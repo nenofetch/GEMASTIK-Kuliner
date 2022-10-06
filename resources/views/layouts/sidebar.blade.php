@@ -1,3 +1,8 @@
+@php
+$segment1 = Request::segment(1);
+$pages = ['home', 'toko', 'profile', 'settings'];
+@endphp
+
 <!-- ========== Left Sidebar Start ========== -->
 <div class="leftside-menu">
     <!-- LOGO -->
@@ -18,14 +23,14 @@
             <li class="side-nav-title side-nav-item">Navigation</li>
 
             <li class="side-nav-item">
-                <a href="apps-calendar.html" class="side-nav-link">
+                <a href="{{ route('home') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Dashboard </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a href="{{route('toko')}}" class="side-nav-link">
+                <a href="{{ route('toko') }}" class="side-nav-link">
                     <i class="uil-shop"></i>
                     <span> Toko </span>
                 </a>
@@ -69,8 +74,8 @@
                                         <a href="javascript: void(0);">Item 1</a>
                                     </li>
                                     <li class="side-nav-item">
-                                        <a data-bs-toggle="collapse" href="#sidebarFourthLevel"
-                                            aria-expanded="false" aria-controls="sidebarFourthLevel">
+                                        <a data-bs-toggle="collapse" href="#sidebarFourthLevel" aria-expanded="false"
+                                            aria-controls="sidebarFourthLevel">
                                             <span> Item 2 </span>
                                             <span class="menu-arrow"></span>
                                         </a>

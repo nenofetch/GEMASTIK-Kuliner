@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Toko;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TokoController extends Controller
 {
@@ -40,19 +41,19 @@ class TokoController extends Controller
 
         if ($request->hasFile('logo')) {
             $path_logo = $request->file('logo')->store('uploads/logo');
-        }else{
+        } else {
             $path_logo = '';
         }
 
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
             $path_foto = $request->file('foto')->store('uploads/foto');
-        }else{
+        } else {
             $path_foto = '';
         }
 
-        if($request->hasFile('dokumen')){
+        if ($request->hasFile('dokumen')) {
             $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
-        }else{
+        } else {
             $path_dokumen = '';
         }
 
@@ -68,7 +69,8 @@ class TokoController extends Controller
             'dokumen' => $path_dokumen,
         ]);
 
-        return redirect('/toko')->with('msg', "Data berhasil ditambahkan");
+        Alert::success('Berhasil', 'Data berhasil ditambahkan!');
+        return redirect('/toko');
     }
 
     public function edit($id)
@@ -79,7 +81,6 @@ class TokoController extends Controller
 
     public function update($id, Request $request)
     {
-
         $validatedData = $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
@@ -98,32 +99,24 @@ class TokoController extends Controller
         $toko = Toko::find($id);
 
         if ($request->hasFile('logo')) {
+            Storage::delete($toko->logo);
             $path_logo = $request->file('logo')->store('uploads/logo');
-        }else{
+        } else {
             $path_logo = $toko->logo;
         }
 
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
+            Storage::delete($toko->foto);
             $path_foto = $request->file('foto')->store('uploads/foto');
-        }else{
+        } else {
             $path_foto = $toko->foto;
         }
 
-        if($request->hasFile('dokumen')){
+        if ($request->hasFile('dokumen')) {
+            Storage::delete($toko->dokumen);
             $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
-        }else{
+        } else {
             $path_dokumen = $toko->dokumen;
-        }
-
-        $logo = $toko->logo;
-        $foto = $toko->foto;
-        $dokumen = $toko->dokumen;
-        if ($logo) {
-            Storage::delete($logo);
-        }elseif ($foto) {
-            Storage::delete($foto);
-        }elseif($dokumen){
-            Storage::delete($dokumen);
         }
 
         // $toko->update($request->all());
@@ -137,23 +130,27 @@ class TokoController extends Controller
             'foto' => $path_foto,
             'dokumen' => $path_dokumen,
         ]);
-        return redirect('/toko')->with('msg', "Data berhasil diupdate");
+
+        Alert::success('Berhasil', 'Data berhasil diupdate!');
+        return redirect('/toko');
     }
 
     public function destroy($id)
     {
         $toko = Toko::find($id);
-        $logo = $toko->logo;
-        $foto = $toko->foto;
-        $dokumen = $toko->dokumen;
-        if ($logo) {
-            Storage::delete($logo);
-        }elseif ($foto) {
-            Storage::delete($foto);
-        }elseif($dokumen){
-            Storage::delete($dokumen);
+        if ($toko->logo) {
+            Storage::delete($toko->logo);
         }
+
+        if ($toko->foto) {
+            Storage::delete($toko->foto);
+        }
+
+        if ($toko->dokumen) {
+            Storage::delete($toko->dokumen);
+        }
+
         $toko->delete();
-        return redirect('/toko')->with('msg', "Data berhasil dihapus");
+        return response()->json(['status' => 'Data berhasil di hapus!']);
     }
 }

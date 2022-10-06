@@ -22,7 +22,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    
+
     // Toko
     Route::controller(App\Http\Controllers\TokoController::class)->group(function () {
         Route::get('/toko', 'index')->name('toko');
