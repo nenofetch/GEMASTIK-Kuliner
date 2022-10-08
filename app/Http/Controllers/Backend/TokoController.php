@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Toko;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,7 @@ class TokoController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
             'kategori_produk' => 'required',
@@ -81,7 +82,7 @@ class TokoController extends Controller
 
     public function update($id, Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
             'kategori_produk' => 'required',

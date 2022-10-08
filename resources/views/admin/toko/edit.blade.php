@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{ url('toko/' . $toko->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('toko.update', $toko->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!-- Simple card -->

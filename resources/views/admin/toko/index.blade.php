@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-primary mb-3 btn-sm" onclick="window.location='/toko/tambah'">
+                        <button type="button" class="btn btn-primary mb-3 btn-sm" onclick="window.location='/toko/create'">
                             Tambah Data <i class="uil uil-plus"></i>
                         </button>
                     </div>
@@ -50,7 +50,7 @@
                                     <td>{{ $row->alamat }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <button type="button" onclick="window.location='/toko/edit/<?= $row->id ?>'"
+                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>
                                             <button class="btn btn-danger btndelete" data-id="{{ $row->id }}"><i
                                                     class="mdi mdi-trash-can"></i></button>
