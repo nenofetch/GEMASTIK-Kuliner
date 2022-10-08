@@ -44,9 +44,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="pemilik">Pemilik Toko</label>
-                                    <input type="text" class="form-control"
-                                        id="pemilik @error('pemilik') is-invalid @enderror" name="pemilik"
-                                        placeholder="Silakan masukan pemilik" autocomplete="off"
+                                    <input type="text" class="form-control @error('pemilik') is-invalid @enderror"
+                                        id="pemilik" name="pemilik" placeholder="Silakan masukan pemilik" autocomplete="off"
                                         value="{{ $toko->pemilik }}">
                                     @error('pemilik')
                                         <div class="invalid-feedback">

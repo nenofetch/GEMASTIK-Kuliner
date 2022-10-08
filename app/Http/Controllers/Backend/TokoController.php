@@ -132,7 +132,7 @@ class TokoController extends Controller
             'dokumen' => $path_dokumen,
         ]);
 
-        Alert::success('Berhasil', 'Data berhasil diupdate!');
+        Alert::success('Berhasil', 'Data berhasil diubah!');
         return redirect('/toko');
     }
 

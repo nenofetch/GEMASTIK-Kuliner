@@ -49,7 +49,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="password" class="form-label">Confirm Passwordord</label>
+                <label for="password" class="form-label">Confirm Password</label>
                 <div class="input-group input-group-merge">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Enter your confirm password">
                 </div>

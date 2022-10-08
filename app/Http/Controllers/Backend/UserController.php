@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -29,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.add');
     }
 
     /**
@@ -40,7 +42,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8|confirmed',
+            'role' => 'required',
+        ]);
+
+        $users = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $users->assignRole($request->role);
+
+        Alert::success('Berhasil', 'Data berhasil ditambahkan!');
+        return redirect('pengguna');
     }
 
     /**
@@ -62,7 +80,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = User::find($id);
+        return view('admin.user.edit', compact(['users']));
     }
 
     /**
@@ -74,7 +93,46 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $users = User::find($id);
+
+        if ($users->email == $request->email) {
+            $rules = 'required|email';
+        } else {
+            $rules = 'required|email|unique:users';
+        }
+
+        if ($request->password) {
+            $request->validate([
+                'name' => 'required',
+                'email' => $rules,
+                'password' => 'required|min:8',
+                'role' => 'required',
+            ]);
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => $rules,
+                'role' => 'required',
+            ]);
+        }
+
+        if ($request->password) {
+            $users->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            $users->assignRole($request->role);
+        } else {
+            $users->update([
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+            $users->assignRole($request->role);
+        }
+
+        Alert::success('Berhasil', 'Data berhasil diubah!');
+        return redirect('pengguna');
     }
 
     /**
@@ -85,6 +143,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $users = User::find($id);
+        $users->delete();
+        return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 }
