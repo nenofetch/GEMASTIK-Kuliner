@@ -23,26 +23,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['role:admin'])->group(function () {
     Route::resources([
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
+        'product' => App\Http\Controllers\Backend\ProductController::class,
         'toko' => App\Http\Controllers\Backend\TokoController::class,
+        'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
-
-    // // Toko
-    // Route::controller(App\Http\Controllers\Backend\TokoController::class)->group(function () {
-    //     Route::get('/toko', 'index')->name('toko');
-    //     Route::get('/toko/tambah', 'create')->name('create');
-    //     Route::post('/toko/simpan', 'store')->name('store');
-    //     Route::get('/toko/edit/{id}', 'edit')->name('edit');
-    //     Route::put('/toko/{id}', 'update')->name('update');
-    //     Route::delete('/toko/{id}', 'destroy')->name('destroy');
-    // });
-    // Route::resource('toko', TokoController::class)->names([
-    //     'index' => 'manage.toko',
-    //     'create' => 'toko.create',
-    //     'store' => 'toko.store',
-    //     'edit' => 'toko.edit',
-    //     'update' => 'toko.update',
-    //     'destroy' => 'toko.destroy',
-    // ]);
 });
 
 Auth::routes();

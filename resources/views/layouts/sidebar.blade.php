@@ -30,13 +30,6 @@ $pages = ['home', 'toko', 'profile', 'settings'];
             </li>
 
             <li class="side-nav-item">
-                <a href="toko" class="side-nav-link">
-                    <i class="uil-shop"></i>
-                    <span> Toko </span>
-                </a>
-            </li>
-
-            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarMultiLevel" aria-expanded="false"
                     aria-controls="sidebarMultiLevel" class="side-nav-link">
                     <i class="uil-folder-plus"></i>
@@ -95,6 +88,20 @@ $pages = ['home', 'toko', 'profile', 'settings'];
                         </li>
                     </ul>
                 </div>
+            </li>
+            
+            <li class="side-nav-item">
+                <a href="toko" class="side-nav-link">
+                    <i class="uil-shop"></i>
+                    <span> Toko </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="pengguna" class="side-nav-link">
+                    <i class="uil-user"></i>
+                    <span> Pengguna </span>
+                </a>
             </li>
         </ul>
         <!-- End Sidebar -->
