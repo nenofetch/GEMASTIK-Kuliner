@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }} - {{ Auth::user()->roles->pluck('name')[0] }} <br>
                         {{ __('You are logged in!') }} <br><br>
                         <span onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <strong>Logout</strong> </span>

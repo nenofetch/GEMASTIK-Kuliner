@@ -18,9 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['role:User'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
 
-Route::middleware(['role:admin'])->group(function () {
+Route::middleware(['role:Administrator'])->group(function () {
     Route::resources([
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'product' => App\Http\Controllers\Backend\ProductController::class,

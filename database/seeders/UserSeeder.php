@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('1234567890')
         ]);
 
-        $admin->assignRole('admin');
+        $admin->assignRole('Administrator');
 
         $user = User::create([
             'name' => 'User Role',
@@ -29,6 +29,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('1234567890')
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole('User');
     }
 }

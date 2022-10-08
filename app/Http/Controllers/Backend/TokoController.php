@@ -25,7 +25,7 @@ class TokoController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
             'kategori_produk' => 'required',
@@ -82,7 +82,7 @@ class TokoController extends Controller
 
     public function update($id, Request $request)
     {
-        $validatedData = $request->validate([
+        $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
             'kategori_produk' => 'required',
