@@ -44,7 +44,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->email }}</td>
-                                    <td>{{ $row->roles->pluck('name') }}</td>
+                                    <td>{{ $row->roles->pluck('name')[0] }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
                                             <button type="button" onclick="window.location='/pengguna/<?= $row->id ?>/edit'"

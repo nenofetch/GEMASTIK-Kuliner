@@ -6,7 +6,7 @@
 
         <div class="text-center w-85 m-auto">
             <h4 class="text-dark-50 text-center mt-0 fw-bold">Register</h4>
-            <p class="text-muted mb-4">Sistem Pelayanan Kuliner Di Kabupaten Kuningan</p>
+            <p class="text-muted mb-4">Sistem Informasi Kuliner Di Kabupaten Kuningan</p>
         </div>
 
         <form method="POST" action="{{ route('register') }}">
