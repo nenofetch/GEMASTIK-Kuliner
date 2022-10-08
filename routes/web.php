@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // Toko
-    Route::controller(App\Http\Controllers\TokoController::class)->group(function () {
+    Route::controller(App\Http\Controllers\Backend\TokoController::class)->group(function () {
         Route::get('/toko', 'index')->name('toko');
         Route::get('/toko/tambah', 'create')->name('create');
         Route::post('/toko/simpan', 'store')->name('store');
