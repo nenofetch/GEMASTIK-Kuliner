@@ -23,14 +23,14 @@ $pages = ['home', 'toko', 'profile', 'settings'];
             <li class="side-nav-title side-nav-item">Navigation</li>
 
             <li class="side-nav-item">
-                <a href="{{ route('home') }}" class="side-nav-link">
+                <a href="dashboard" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Dashboard </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a href="{{ route('toko') }}" class="side-nav-link">
+                <a href="toko" class="side-nav-link">
                     <i class="uil-shop"></i>
                     <span> Toko </span>
                 </a>
