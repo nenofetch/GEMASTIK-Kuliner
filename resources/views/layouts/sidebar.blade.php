@@ -23,7 +23,7 @@ $pages = ['home', 'toko', 'profile', 'settings'];
             <li class="side-nav-title side-nav-item">Navigation</li>
 
             <li class="side-nav-item">
-                <a href="dashboard" class="side-nav-link">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Dashboard </span>
                 </a>
@@ -91,14 +91,14 @@ $pages = ['home', 'toko', 'profile', 'settings'];
             </li>
             
             <li class="side-nav-item">
-                <a href="toko" class="side-nav-link">
+                <a href="{{ route('toko.index') }}" class="side-nav-link">
                     <i class="uil-shop"></i>
                     <span> Toko </span>
                 </a>
             </li>
 
             <li class="side-nav-item">
-                <a href="pengguna" class="side-nav-link">
+                <a href="{{ route('pengguna.index') }}" class="side-nav-link">
                     <i class="uil-user"></i>
                     <span> Pengguna </span>
                 </a>
