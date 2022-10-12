@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoryProduct extends Model
+class Category extends Model
 {
     use HasFactory;
-    protected $table = 'category_product';
+    protected $table = 'category';
     protected $guarded = 'id';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    public $fillable = 'category_product_name';
+    public $fillable = ['name', 'slug'];
 
     public function Tokos()
     {

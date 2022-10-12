@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoryProduct;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryProductController extends Controller
+class CategoryController extends Controller
 {
     public function index()
     {
@@ -16,10 +16,11 @@ class CategoryProductController extends Controller
     {
 
         $validate = $request->validate([
-            'category_product_name' => 'required'
+            'name' => 'required',
+            'slug' => strtolower('name')
         ]);
 
-        CategoryProduct::create([
+        Category::create([
             $validate
         ]);
 
@@ -28,25 +29,26 @@ class CategoryProductController extends Controller
 
     public function edit($id)
     {
-        CategoryProduct::find($id);
+        Category::find($id);
     }
 
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'category_product_name' => 'required'
+            'name' => 'required',
+            'slug' => strtolower('name')
         ]);
 
-        $category = CategoryProduct::find($id);
+        $category = Category::find($id);
 
         $category->update([
-            'category_name_product' => $request->category_name_product
+            $validate
         ]);
     }
 
     public function destroy($id)
     {
-        $category = CategoryProduct::find($id);
+        $category = Category::find($id);
 
         $category->destroy();
     }
