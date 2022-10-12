@@ -34,7 +34,6 @@
                                 <th>#</th>
                                 <th>Nama Toko</th>
                                 <th>Pemilik</th>
-                                <th>Kategori</th>
                                 <th>Alamat</th>
                                 <th>Aksi</th>
                             </tr>
@@ -46,7 +45,6 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ $row->pemilik }}</td>
-                                    <td>{{ $row->kategori_produk }}</td>
                                     <td>{{ $row->alamat }}</td>
                                     <td>
                                         <div class="btn-group" role="group">

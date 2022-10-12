@@ -54,21 +54,6 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="kategori_produk">Kategori Produk</label>
-                                    <input type="text"
-                                        class="form-control @error('kategori_produk') is-invalid @enderror"
-                                        id="kategori_produk" name="kategori_produk"
-                                        placeholder="Silakan masukan kategori produk" autocomplete="off"
-                                        value="{{ old('kategori_produk') }}">
-                                    @error('kategori_produk')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
                                     <label class="form-label" for="deskripsi">Deskripsi</label>
                                     <textarea name="deskripsi" id="deskripsi" class="form-control" rows="1" placeholder="Silakan masukan deskripsi">{{ old('deskripsi') }}</textarea>
                                 </div>

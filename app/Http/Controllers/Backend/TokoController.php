@@ -28,7 +28,6 @@ class TokoController extends Controller
         $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
-            'kategori_produk' => 'required',
             'alamat' => 'required',
             'logo' => 'mimes:jpg,png,jpeg|image|max:2048',
             'foto' => 'mimes:jpg,png,jpeg|image|max:2048',
@@ -36,7 +35,6 @@ class TokoController extends Controller
         ], [
             'nama.required' => 'Name field is required.',
             'pemilik.required' => 'Pemilik field is required.',
-            'kategori_produk.required' => 'Kategori produk field is required.',
             'alamat.required' => 'Alamat field is required.',
         ]);
 
@@ -62,7 +60,6 @@ class TokoController extends Controller
         $toko = Toko::create([
             'nama' => $request->nama,
             'pemilik' => $request->pemilik,
-            'kategori_produk' => $request->kategori_produk,
             'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
             'logo' => $path_logo,
@@ -85,7 +82,6 @@ class TokoController extends Controller
         $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
-            'kategori_produk' => 'required',
             'alamat' => 'required',
             'logo' => 'mimes:jpg,png,jpeg|image|max:2048',
             'foto' => 'mimes:jpg,png,jpeg|image|max:2048',
@@ -93,7 +89,6 @@ class TokoController extends Controller
         ], [
             'nama.required' => 'Name field is required.',
             'pemilik.required' => 'Pemilik field is required.',
-            'kategori_produk.required' => 'Kategori produk field is required.',
             'alamat.required' => 'Alamat field is required.',
         ]);
 
@@ -124,7 +119,6 @@ class TokoController extends Controller
         $toko->update([
             'nama' => $request->nama,
             'pemilik' => $request->pemilik,
-            'kategori_produk' => $request->kategori_produk,
             'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
             'logo' => $path_logo,

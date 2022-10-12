@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['role:User'])->group(function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resources(['home' => App\Http\Controllers\Backend\DashboardController::class]);
 });
 
 Route::middleware(['role:Administrator'])->group(function () {
