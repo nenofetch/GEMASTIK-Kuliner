@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('foto')->nullable();
             $table->string('dokumen')->nullable();
+            $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });
     }

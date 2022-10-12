@@ -13,4 +13,9 @@ class Toko extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = ['nama', 'pemilik', 'kategori_produk', 'deskripsi', 'alamat', 'logo', 'foto', 'dokumen'];
+
+    public function CategoryProducts()
+    {
+        return $this->belongsTo(CategoryProduct::class);
+    }
 }
