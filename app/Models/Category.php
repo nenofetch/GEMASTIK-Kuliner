@@ -14,8 +14,8 @@ class Category extends Model
     public $timestamps = true;
     public $fillable = ['name', 'slug'];
 
-    public function Tokos()
+    public function Products()
     {
-        return $this->hasMany(Toko::class);
+        return $this->hasMany(Product::class);
     }
 }
