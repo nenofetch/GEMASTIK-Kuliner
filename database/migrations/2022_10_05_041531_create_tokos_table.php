@@ -17,13 +17,11 @@ return new class extends Migration
             $table->integer('id')->autoIncrement();
             $table->string('nama')->nullable();
             $table->string('pemilik')->nullable();
-            $table->string('kategori_produk')->nullable();
             $table->text('deskripsi')->nullable();
             $table->text('alamat')->nullable();
             $table->string('logo')->nullable();
             $table->string('foto')->nullable();
             $table->string('dokumen')->nullable();
-            $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });
     }
