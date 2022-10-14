@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('foto')->nullable();
             $table->string('dokumen')->nullable();
+            $table->string('status')->nullable();
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
