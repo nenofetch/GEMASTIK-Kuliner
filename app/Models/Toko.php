@@ -13,7 +13,7 @@ class Toko extends Model
     protected $guarded = 'id';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['nama', 'pemilik', 'deskripsi', 'alamat', 'logo', 'foto', 'dokumen', 'status', 'id_user'];
+    public $fillable = ['nama', 'pemilik', 'deskripsi', 'alamat', 'logo', 'foto', 'dokumen', 'status', 'id_user'];
 
     public function product()
     {

@@ -21,10 +21,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('category_id')->nullable();
             $table->string('price')->nullable();
-            $table->integer('store_id')->nullable();
+            $table->integer('toko_id')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('store_id')->references('id')->on('toko');
+            $table->foreign('toko_id')->references('id')->on('toko');
         });
     }
 

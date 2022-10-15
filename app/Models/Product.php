@@ -13,7 +13,7 @@ class Product extends Model
     protected $guarded = 'id';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['image', 'name', 'slug', 'description', 'category_id', 'price', 'store_id'];
+    public $fillable = ['image', 'name', 'slug', 'description', 'category_id', 'price', 'toko_id'];
 
     public function category()
     {
