@@ -10,6 +10,7 @@ class Toko extends Model
     use HasFactory;
 
     protected $table = 'toko';
+    protected $guarded = 'id';
     protected $primaryKey = 'id';
     public $timestamps = true;
     protected $fillable = ['nama', 'pemilik', 'deskripsi', 'alamat', 'logo', 'foto', 'dokumen', 'status', 'id_user'];
