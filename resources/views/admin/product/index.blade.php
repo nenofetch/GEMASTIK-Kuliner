@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'Toko')
+@section('title', 'Produk')
 
 @section('content')
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
             <div class="page-title-box">
-                <h4 class="page-title">Toko</h4>
+                <h4 class="page-title">Produk</h4>
             </div>
         </div>
     </div>
@@ -49,7 +49,7 @@
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->category->name }}</td>
                                     <td>{{ $row->price }}</td>
-                                    <td>{{ $row->toko->nama }}</td>
+                                    <!-- <td>{{ $row->toko }}</td> -->
                                     <td>
                                         <div class="btn-group" role="group">
                                             <button type="button" onclick="window.location='/produk/<?= $row->id ?>/edit'"

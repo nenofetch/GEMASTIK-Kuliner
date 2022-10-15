@@ -25,7 +25,7 @@ Route::middleware(['role:User'])->group(function () {
 Route::middleware(['role:Administrator'])->group(function () {
     Route::resources([
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
-        'kategori' => App\Http\Controllers\Backend\ProductController::class,
+        'kategori' => App\Http\Controllers\Backend\CategoryController::class,
         'produk' => App\Http\Controllers\Backend\ProductController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
