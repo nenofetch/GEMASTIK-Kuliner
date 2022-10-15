@@ -15,7 +15,8 @@
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
-                    <span class="account-position">{{ Auth::user()->roles->pluck('name')[0] }}</span>
+                    <span
+                        class="account-position">{{ Auth::user()->hasRole('Administrator') ? 'Administrator' : 'User' }}</span>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

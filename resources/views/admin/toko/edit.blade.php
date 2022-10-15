@@ -45,8 +45,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="pemilik">Pemilik Toko</label>
                                     <input type="text" class="form-control @error('pemilik') is-invalid @enderror"
-                                        id="pemilik" name="pemilik" placeholder="Silakan masukan pemilik" autocomplete="off"
-                                        value="{{ $toko->pemilik }}">
+                                        id="pemilik" name="pemilik" placeholder="Silakan masukan pemilik"
+                                        autocomplete="off" value="{{ $toko->pemilik }}">
                                     @error('pemilik')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -76,8 +76,8 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="logo">Logo</label>
                                     <input type="file" name="logo" id="logo"
-                                        class="form-control @error('logo') is-invalid @enderror"
-                                        value="{{ $toko->logo }}" accept="image/*">
+                                        class="form-control @error('logo') is-invalid @enderror" value="{{ $toko->logo }}"
+                                        accept="image/*">
                                     @error('logo')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -111,6 +111,24 @@
                                     @enderror
                                 </div>
                             </div>
+                            @if (Auth::user()->hasRole('Administrator'))
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="status_toko">Status</label>
+                                        <select name="status_toko" id="status_toko" class="form-control">
+                                            <option value="">-- Ubah Status --</option>
+                                            <option value="pending" {{ $toko->status == 'pending' ? 'selected' : '' }}>
+                                                Pending
+                                            </option>
+                                            <option value="diterima" {{ $toko->status == 'diterima' ? 'selected' : '' }}>
+                                                Diterima</option>
+                                            <option value="ditolak" {{ $toko->status == 'ditolak' ? 'selected' : '' }}>
+                                                Ditolak
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            @endif
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button type="submit" class="btn btn-primary mb-3" id="save">
                                     Simpan

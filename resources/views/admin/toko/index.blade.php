@@ -35,6 +35,7 @@
                                 <th>Nama Toko</th>
                                 <th>Pemilik</th>
                                 <th>Alamat</th>
+                                <td>Status</td>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -46,8 +47,17 @@
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ $row->pemilik }}</td>
                                     <td>{{ $row->alamat }}</td>
+                                    @if ($row->status == 'pending')
+                                        <td><span class="badge bg-secondary">Pending</span></td>
+                                    @elseif($row->status == 'diterima')
+                                        <td><span class="badge bg-success">Diterima</span></td>
+                                    @elseif($row->status == 'ditolak')
+                                        <td><span class="badge bg-danger">Ditolak</span></td>
+                                    @endif
                                     <td>
                                         <div class="btn-group" role="group">
+                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>/detail'"
+                                                class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
                                             <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>
                                             <button class="btn btn-danger btndelete" data-id="{{ $row->id }}"><i

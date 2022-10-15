@@ -5,16 +5,31 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Toko;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TokoController extends Controller
 {
+    use AuthenticatesUsers;
+    use HasRoles;
+
     public function index()
     {
-        $data = [
-            'toko' => Toko::all()
-        ];
+        if (Auth::user()->hasRole('Administrator') == true) {
+            $data = [
+                'toko' => Toko::all()
+            ];
+        } else {
+            $id = Auth::user()->id;
+            $data = [
+                'toko' => DB::table('toko')->where('id_user', $id)->get()
+            ];
+        }
+
         return view('admin.toko.index', $data);
     }
 
@@ -57,7 +72,7 @@ class TokoController extends Controller
         }
 
         // $toko = Toko::create($request->all());
-        $toko = Toko::create([
+        Toko::create([
             'nama' => $request->nama,
             'pemilik' => $request->pemilik,
             'deskripsi' => $request->deskripsi,
@@ -65,9 +80,11 @@ class TokoController extends Controller
             'logo' => $path_logo,
             'foto' => $path_foto,
             'dokumen' => $path_dokumen,
+            'status' => 'pending',
+            'id_user' => Auth::user()->id
         ]);
 
-        Alert::success('Berhasil', 'Data berhasil ditambahkan!');
+        Alert::success('Success', 'Data saved successfully');
         return redirect('/toko');
     }
 
@@ -116,18 +133,37 @@ class TokoController extends Controller
         }
 
         // $toko->update($request->all());
-        $toko->update([
-            'nama' => $request->nama,
-            'pemilik' => $request->pemilik,
-            'deskripsi' => $request->deskripsi,
-            'alamat' => $request->alamat,
-            'logo' => $path_logo,
-            'foto' => $path_foto,
-            'dokumen' => $path_dokumen,
-        ]);
+        if (Auth::user()->hasRole('Administrator') == true) {
+            $toko->update([
+                'nama' => $request->nama,
+                'pemilik' => $request->pemilik,
+                'deskripsi' => $request->deskripsi,
+                'alamat' => $request->alamat,
+                'logo' => $path_logo,
+                'foto' => $path_foto,
+                'dokumen' => $path_dokumen,
+                'status' => $request->status_toko
+            ]);
+        } else {
+            $toko->update([
+                'nama' => $request->nama,
+                'pemilik' => $request->pemilik,
+                'deskripsi' => $request->deskripsi,
+                'alamat' => $request->alamat,
+                'logo' => $path_logo,
+                'foto' => $path_foto,
+                'dokumen' => $path_dokumen,
+            ]);
+        }
 
-        Alert::success('Berhasil', 'Data berhasil diubah!');
+        Alert::success('Success', 'Data saved successfully');
         return redirect('/toko');
+    }
+
+    public function detail($id)
+    {
+        $toko = Toko::find($id);
+        return view('admin.toko.detail', compact(['toko']));
     }
 
     public function destroy($id)
@@ -146,6 +182,6 @@ class TokoController extends Controller
         }
 
         $toko->delete();
-        return response()->json(['status' => 'Data berhasil di hapus!']);
+        return response()->json(['status' => 'Data deleted successfully!']);
     }
 }

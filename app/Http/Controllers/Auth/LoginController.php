@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Spatie\Permission\Traits\HasRoles;
 
 class LoginController extends Controller
 {
@@ -21,6 +22,7 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+    use HasRoles;
 
     /**
      * Where to redirect users after login.
@@ -45,6 +47,6 @@ class LoginController extends Controller
             return redirect()->route('dashboard.index');
         }
 
-        return redirect()->route('home');
+        return redirect()->route('toko.index');
     }
 }
