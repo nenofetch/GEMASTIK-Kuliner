@@ -14,7 +14,7 @@ class Category extends Model
     public $timestamps = true;
     public $fillable = ['name', 'slug'];
 
-    public function Products()
+    public function product()
     {
         return $this->hasMany(Product::class);
     }

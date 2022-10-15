@@ -32,23 +32,27 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Nama Toko</th>
-                                <th>Pemilik</th>
-                                <th>Alamat</th>
+                                <th>Foto</th>
+                                <th>Nama</th>
+                                <th>Kategori</th>
+                                <th>Harga</th>
+                                <th>Toko</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($toko as $row)
+                            @foreach ($products as $row)
                                 <tr>
                                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $row->nama }}</td>
-                                    <td>{{ $row->pemilik }}</td>
-                                    <td>{{ $row->alamat }}</td>
+                                    <td><img src="{{ asset('assets') }}/images/products/{{ $row->image }}" width="15%" alt="foto"></td>
+                                    <td>{{ $row->name }}</td>
+                                    <td>{{ $row->category->name }}</td>
+                                    <td>{{ $row->price }}</td>
+                                    <td>{{ $row->toko->nama }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
+                                            <button type="button" onclick="window.location='/produk/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>
                                             <button class="btn btn-danger btndelete" data-id="{{ $row->id }}"><i
                                                     class="mdi mdi-trash-can"></i></button>
@@ -85,7 +89,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: "toko/" + id,
+                        url: "produk/" + id,
                         type: 'DELETE',
                         data: {
                             "id": id,

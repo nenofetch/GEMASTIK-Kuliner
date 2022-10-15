@@ -9,17 +9,17 @@ class Product extends Model
 {
     use HasFactory;
     
-    protected $table = 'product';
+    protected $table = 'products';
     protected $primaryKey = 'id';
     public $timestamps = true;
-    protected $fillable = ['image', 'nama', 'slug', 'description', 'category_id', 'price', 'store_id'];
+    protected $fillable = ['image', 'name', 'slug', 'description', 'category_id', 'price', 'store_id'];
 
-    public function Categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function Stores()
+    public function toko()
     {
         return $this->belongsTo(Toko::class);
     }

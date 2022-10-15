@@ -14,8 +14,8 @@ class Toko extends Model
     public $timestamps = true;
     protected $fillable = ['nama', 'pemilik', 'deskripsi', 'alamat', 'logo', 'foto', 'dokumen'];
 
-    public function Products()
+    public function product()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(Product::class);
     }
 }
