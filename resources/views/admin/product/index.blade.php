@@ -49,7 +49,7 @@
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->category->name }}</td>
                                     <td>{{ $row->price }}</td>
-                                    <!-- <td>{{ $row->toko->nama }}</td> -->
+                                    <td>{{ $row->toko->nama }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
                                             <button type="button" onclick="window.location='/produk/<?= $row->id ?>/edit'"
