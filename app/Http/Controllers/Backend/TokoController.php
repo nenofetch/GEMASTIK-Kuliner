@@ -54,19 +54,19 @@ class TokoController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $path_logo = $request->file('logo')->store('uploads/logo');
+            $path_logo = $request->file('logo')->store('public/logo');
         } else {
             $path_logo = '';
         }
 
         if ($request->hasFile('foto')) {
-            $path_foto = $request->file('foto')->store('uploads/foto');
+            $path_foto = $request->file('foto')->store('public/foto');
         } else {
             $path_foto = '';
         }
 
         if ($request->hasFile('dokumen')) {
-            $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
+            $path_dokumen = $request->file('dokumen')->store('public/dokumen');
         } else {
             $path_dokumen = '';
         }
@@ -88,10 +88,16 @@ class TokoController extends Controller
         return redirect('/toko');
     }
 
+    public function show($id)
+    {
+        $toko = Toko::find($id);
+        return view('admin.toko.detail', compact(['toko']));
+    }
+    
     public function edit($id)
     {
         $toko = Toko::find($id);
-        return view('admin.toko.edit', compact(['toko']));
+        return view('admin.toko.edit', compact('toko'));
     }
 
     public function update($id, Request $request)
@@ -113,21 +119,21 @@ class TokoController extends Controller
 
         if ($request->hasFile('logo')) {
             Storage::delete($toko->logo);
-            $path_logo = $request->file('logo')->store('uploads/logo');
+            $path_logo = $request->file('logo')->store('public/logo');
         } else {
             $path_logo = $toko->logo;
         }
 
         if ($request->hasFile('foto')) {
             Storage::delete($toko->foto);
-            $path_foto = $request->file('foto')->store('uploads/foto');
+            $path_foto = $request->file('foto')->store('public/foto');
         } else {
             $path_foto = $toko->foto;
         }
 
         if ($request->hasFile('dokumen')) {
             Storage::delete($toko->dokumen);
-            $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
+            $path_dokumen = $request->file('dokumen')->store('public/dokumen');
         } else {
             $path_dokumen = $toko->dokumen;
         }
@@ -158,12 +164,6 @@ class TokoController extends Controller
 
         Alert::success('Success', 'Data berhasil diubah!');
         return redirect('/toko');
-    }
-
-    public function detail($id)
-    {
-        $toko = Toko::find($id);
-        return view('admin.toko.detail', compact(['toko']));
     }
 
     public function destroy($id)

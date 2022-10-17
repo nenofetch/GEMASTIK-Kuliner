@@ -27,12 +27,9 @@ Route::middleware(['role:Administrator'])->group(function () {
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'kategori' => App\Http\Controllers\Backend\CategoryController::class,
         'produk' => App\Http\Controllers\Backend\ProductController::class,
+        'toko' => App\Http\Controllers\Backend\TokoController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
 });
-
-//Toko
-Route::get('/toko/{toko}/detail', [App\Http\Controllers\Backend\TokoController::class, 'detail']);
-Route::resource('toko', App\Http\Controllers\Backend\TokoController::class);
 
 Auth::routes();

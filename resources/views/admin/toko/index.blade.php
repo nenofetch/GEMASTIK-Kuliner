@@ -56,7 +56,7 @@
                                     @endif
                                     <td>
                                         <div class="btn-group" role="group">
-                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>/detail'"
+                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>'"
                                                 class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
                                             <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>

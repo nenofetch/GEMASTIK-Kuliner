@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Toko;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -48,7 +49,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'mimes:jpg,png,jpeg|image|max:2048',
+            'image' => 'required|mimes:jpg,png,jpeg|image|max:2048',
             'name' => 'required',
             'description' => 'required',
             'category_id' => 'required',
@@ -57,7 +58,7 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('uploads/product');
+            $path = $request->file('image')->store('public/products');
         } else {
             $path = '';
         }
@@ -84,7 +85,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        return view('admin.product.detail', compact('product'));
     }
 
     /**
@@ -95,7 +98,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::all();
+        $toko = Toko::all();
+
+        return view('admin.product.edit', compact('product', 'categories', 'toko'));
     }
 
     /**
@@ -107,7 +114,36 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'image' => 'mimes:jpg,png,jpeg|image|max:2048',
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+            'toko_id' => 'required',
+        ]);
+
+        $product = Product::find($id);
+
+        if ($request->hasFile('image')) {
+            Storage::delete($product->image);
+            $path = $request->file('image')->store('public/products');
+        } else {
+            $path = '';
+        }
+
+        $product->update([
+            'image' => $path,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'price' => $request->price,
+            'toko_id' => $request->toko_id,
+        ]);
+
+        Alert::success('Success', 'Data berhasil diubah!');
+        return redirect('produk');
     }
 
     /**
@@ -118,6 +154,12 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        if ($product->image) {
+            Storage::delete($product->image);
+        }
+
+        $product->delete();
+        return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 }

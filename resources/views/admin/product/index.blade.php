@@ -48,10 +48,12 @@
                                     <td><img src="{{ asset('storage/' . $row->image) }}" width="15%" alt="foto"></td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->category->name }}</td>
-                                    <td>{{ $row->price }}</td>
+                                    <td>Rp {{ $row->price }}</td>
                                     <td>{{ $row->toko->nama }}</td>
                                     <td>
                                         <div class="btn-group" role="group">
+                                        <button type="button" onclick="window.location='/produk/<?= $row->id ?>'"
+                                                class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
                                             <button type="button" onclick="window.location='/produk/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>
                                             <button class="btn btn-danger btndelete" data-id="{{ $row->id }}"><i
