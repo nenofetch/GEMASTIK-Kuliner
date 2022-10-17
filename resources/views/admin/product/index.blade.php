@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button type="button" class="btn btn-primary mb-3 btn-sm" onclick="window.location='/toko/create'">
+                        <button type="button" class="btn btn-primary mb-3 btn-sm" onclick="window.location='/produk/create'">
                             Tambah Data <i class="uil uil-plus"></i>
                         </button>
                     </div>
@@ -45,7 +45,7 @@
                                 <tr>
                                     <input type="hidden" class="delete_id" value="{{ $row->id }}">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td><img src="{{ asset('assets') }}/images/products/{{ $row->image }}" width="15%" alt="foto"></td>
+                                    <td><img src="{{ asset('storage/' . $row->image) }}" width="15%" alt="foto"></td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->category->name }}</td>
                                     <td>{{ $row->price }}</td>

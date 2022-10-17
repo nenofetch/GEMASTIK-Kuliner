@@ -84,7 +84,7 @@ class TokoController extends Controller
             'id_user' => Auth::user()->id
         ]);
 
-        Alert::success('Success', 'Data saved successfully');
+        Alert::success('Success', 'Data berhasil ditambahkan!');
         return redirect('/toko');
     }
 
@@ -156,7 +156,7 @@ class TokoController extends Controller
             ]);
         }
 
-        Alert::success('Success', 'Data saved successfully');
+        Alert::success('Success', 'Data berhasil diubah!');
         return redirect('/toko');
     }
 
@@ -182,6 +182,6 @@ class TokoController extends Controller
         }
 
         $toko->delete();
-        return response()->json(['status' => 'Data deleted successfully!']);
+        return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 }

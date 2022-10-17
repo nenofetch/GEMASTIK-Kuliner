@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Toko;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -28,7 +32,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'categories' => Category::all(),
+            'toko' => Toko::all(),
+        ];
+        return view('admin.product.add', $data);
     }
 
     /**
@@ -39,7 +47,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'image' => 'mimes:jpg,png,jpeg|image|max:2048',
+            'name' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'price' => 'required',
+            'toko_id' => 'required',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('uploads/product');
+        } else {
+            $path = '';
+        }
+
+        Product::create([
+            'image' => $path,
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-'),
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+            'price' => $request->price,
+            'toko_id' => $request->toko_id,
+        ]);
+
+        Alert::success('Success', 'Data berhasil ditambahkan!');
+        return redirect('produk');
     }
 
     /**
