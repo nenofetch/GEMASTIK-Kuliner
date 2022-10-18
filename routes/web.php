@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('frontend.user.index');
 });
 
+Route::get('/info-produk', function () {
+    return view('frontend.user.produk');
+});
+
 Route::middleware(['role:User'])->group(function () {
     Route::resources(['home' => App\Http\Controllers\Backend\DashboardController::class]);
 });
