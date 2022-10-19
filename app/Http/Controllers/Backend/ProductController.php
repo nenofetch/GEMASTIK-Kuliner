@@ -58,7 +58,7 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('public/products');
+            $path = $request->file('image')->store('uploads/products');
         } else {
             $path = '';
         }
@@ -127,7 +127,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('image')) {
             Storage::delete($product->image);
-            $path = $request->file('image')->store('public/products');
+            $path = $request->file('image')->store('uploads/products');
         } else {
             $path = '';
         }
@@ -161,5 +161,18 @@ class ProductController extends Controller
 
         $product->delete();
         return response()->json(['status' => 'Data berhasil dihapus!']);
+    }
+
+    public function addCategory(Request $request) {
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
+        ]);
+
+        return redirect()->with('msg', 'Kategori Sukses Ditambahkan');
     }
 }

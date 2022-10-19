@@ -62,12 +62,21 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="category_id">Kategori</label>
-                                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                                    <option value="">-- Pilih --</option>
-                                    @foreach ($categories as $row)
-                                    <option value="{{ $row->id }}" {{ old('category_id') == $row->id ? 'selected' : '' }}>{{ $row->name }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                            <option value="">-- Pilih --</option>
+                                            @foreach ($categories as $row)
+                                            <option value="{{ $row->id }}" {{ old('category_id') == $row->id ? 'selected' : '' }}>{{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="uil uil-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
                                 @error('category_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -114,5 +123,27 @@
             <!-- end card-->
         </form>
     </div><!-- end col -->
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('kategori.store') }}" method="post">
+                <div class="modal-body">
+                    <label class="form-label" for="name">Nama Kategori</label>
+                    <input type="text" class="form-control" name="name" placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 @endsection

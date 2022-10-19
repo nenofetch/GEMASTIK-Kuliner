@@ -4,28 +4,28 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.category.index', compact('categories'));
     }
 
     public function store(Request $request)
     {
-
-        $validate = $request->validate([
-            'name' => 'required',
-            'slug' => strtolower('name')
-        ]);
-
         Category::create([
-            $validate
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
         ]);
 
-        return redirect()->with('msg', 'Kategori Sukses Ditambahkan');
+        Alert::success('Success', 'Kategori berhasil ditambahkan!');
+        return redirect('kategori');
     }
 
     public function edit($id)
@@ -35,15 +35,15 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validate = $request->validate([
+        $request->validate([
             'name' => 'required',
-            'slug' => strtolower('name')
         ]);
 
         $category = Category::find($id);
 
         $category->update([
-            $validate
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
         ]);
     }
 

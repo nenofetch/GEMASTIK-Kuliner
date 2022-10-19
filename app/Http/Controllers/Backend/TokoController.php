@@ -54,19 +54,19 @@ class TokoController extends Controller
         ]);
 
         if ($request->hasFile('logo')) {
-            $path_logo = $request->file('logo')->store('public/logo');
+            $path_logo = $request->file('logo')->store('uploads/logo');
         } else {
             $path_logo = '';
         }
 
         if ($request->hasFile('foto')) {
-            $path_foto = $request->file('foto')->store('public/foto');
+            $path_foto = $request->file('foto')->store('uploads/foto');
         } else {
             $path_foto = '';
         }
 
         if ($request->hasFile('dokumen')) {
-            $path_dokumen = $request->file('dokumen')->store('public/dokumen');
+            $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
         } else {
             $path_dokumen = '';
         }
@@ -119,21 +119,21 @@ class TokoController extends Controller
 
         if ($request->hasFile('logo')) {
             Storage::delete($toko->logo);
-            $path_logo = $request->file('logo')->store('public/logo');
+            $path_logo = $request->file('logo')->store('uploads/logo');
         } else {
             $path_logo = $toko->logo;
         }
 
         if ($request->hasFile('foto')) {
             Storage::delete($toko->foto);
-            $path_foto = $request->file('foto')->store('public/foto');
+            $path_foto = $request->file('foto')->store('uploads/foto');
         } else {
             $path_foto = $toko->foto;
         }
 
         if ($request->hasFile('dokumen')) {
             Storage::delete($toko->dokumen);
-            $path_dokumen = $request->file('dokumen')->store('public/dokumen');
+            $path_dokumen = $request->file('dokumen')->store('uploads/dokumen');
         } else {
             $path_dokumen = $toko->dokumen;
         }
