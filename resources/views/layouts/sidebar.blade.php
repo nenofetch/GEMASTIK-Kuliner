@@ -18,19 +18,19 @@
             <li class="side-nav-title side-nav-item">Navigation</li>
 
             @if (Auth::user()->hasRole('Administrator'))
-                <li class="side-nav-item">
-                    <a href="{{ route('dashboard.index') }}" class="side-nav-link">
-                        <i class="uil-home-alt"></i>
-                        <span> Dashboard </span>
-                    </a>
-                </li>
+            <li class="side-nav-item">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span> Dashboard </span>
+                </a>
+            </li>
 
-                <li class="side-nav-item">
-                    <a href="{{ route('kategori.index') }}" class="side-nav-link">
-                        <i class="uil-sitemap"></i>
-                        <span> Kategori </span>
-                    </a>
-                </li>
+            <li class="side-nav-item">
+                <a href="{{ route('kategori.index') }}" class="side-nav-link">
+                    <i class="uil-sitemap"></i>
+                    <span> Kategori </span>
+                </a>
+            </li>
             @endif
 
             <li class="side-nav-item">
@@ -48,13 +48,24 @@
             </li>
 
             @if (Auth::user()->hasRole('Administrator'))
-                <li class="side-nav-item">
-                    <a href="{{ route('pengguna.index') }}" class="side-nav-link">
-                        <i class="uil-user"></i>
-                        <span> Pengguna </span>
-                    </a>
-                </li>
+            <li class="side-nav-item">
+                <a href="{{ route('pengguna.index') }}" class="side-nav-link">
+                    <i class="uil-user"></i>
+                    <span> Pengguna </span>
+                </a>
+            </li>
             @endif
+
+            <li class="side-nav-item">
+                <a class="side-nav-link">
+                    <i class="mdi mdi-logout"></i>
+                    <span
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</span>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </a>
+            </li>
         </ul>
         <!-- End Sidebar -->
 
