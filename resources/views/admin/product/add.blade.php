@@ -134,6 +134,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('kategori.store') }}" method="post">
+            @csrf
                 <div class="modal-body">
                     <label class="form-label" for="name">Nama Kategori</label>
                     <input type="text" class="form-control" name="name" placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>

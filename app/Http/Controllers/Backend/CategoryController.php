@@ -22,7 +22,6 @@ class CategoryController extends Controller
 
         $request->validate([
             'name' => 'required',
-            'slug' => Str::slug($request->name, '-')
         ]);
 
         Category::create([
@@ -51,12 +50,15 @@ class CategoryController extends Controller
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-')
         ]);
+
+        Alert::success('Success', 'Kategori berhasil diubah!');
+        return redirect('kategori');
     }
 
     public function destroy($id)
     {
         $category = Category::find($id);
-
-        $category->destroy();
+        $category->delete();
+        return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 }
