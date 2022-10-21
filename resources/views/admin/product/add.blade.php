@@ -133,7 +133,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('addCategory') }}" method="post">
+            <form method="post" id="formSave">
             @csrf
                 <div class="modal-body">
                     <label class="form-label" for="name">Nama Kategori</label>
@@ -141,10 +141,41 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+@include('sweetalert::alert')
+<script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $("#formSave").submit(function(e) {
+        e.preventDefault();
+        var token = $("meta[name='csrf-token']").attr("content");
+        $.ajax({
+            url: "{{ route('storeCategory') }}",
+            type: 'POST',
+            data: {
+                "_token": token,
+            },
+            success: function(response) {
+                swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: response.status,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
+    });
+</script>
 @endsection

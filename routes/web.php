@@ -43,7 +43,7 @@ Route::middleware(['role:Administrator'])->group(function () {
         'toko' => App\Http\Controllers\Backend\TokoController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
-    Route::post('/addCategory', [ProductController::class, 'storeCategory'])->name('addCategory');
+    Route::post('/storeCategory', [ProductController::class, 'storeCategory'])->name('storeCategory');
 });
 
 Auth::routes();

@@ -163,19 +163,6 @@ class ProductController extends Controller
         return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 
-    public function addCategory(Request $request) {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        Category::create([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name, '-')
-        ]);
-
-        return redirect()->with('msg', 'Kategori Sukses Ditambahkan');
-    }
-
     public function storeCategory(Request $request)
     {
         Category::create([
@@ -183,7 +170,6 @@ class ProductController extends Controller
             'slug' => Str::slug($request->name, '-')
         ]);
 
-        Alert::success('Success', 'Kategori berhasil ditambahkan!');
-        return redirect('produk/create');
+        return response()->json(['status' => 'Data berhasil ditambahkan!']);
     }
 }

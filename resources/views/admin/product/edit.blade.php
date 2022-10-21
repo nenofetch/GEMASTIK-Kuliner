@@ -89,7 +89,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label" for="price">Harga</label>
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Silakan masukan nama produk" value="{{ $product->price }}">
+                                <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" placeholder="Silakan masukan nama produk" value="{{ $product->price }}">
                                 @error('price')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -135,7 +135,7 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('addCategory') }}" method="post">
+            <form action="{{ route('storeCategory') }}" method="post">
             @csrf
                 <div class="modal-body">
                     <label class="form-label" for="name">Nama Kategori</label>
