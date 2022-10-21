@@ -175,4 +175,15 @@ class ProductController extends Controller
 
         return redirect()->with('msg', 'Kategori Sukses Ditambahkan');
     }
+
+    public function storeCategory(Request $request)
+    {
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name, '-')
+        ]);
+
+        Alert::success('Success', 'Kategori berhasil ditambahkan!');
+        return redirect('produk/create');
+    }
 }

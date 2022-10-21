@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,7 @@ Route::middleware(['role:Administrator'])->group(function () {
         'toko' => App\Http\Controllers\Backend\TokoController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
+    Route::post('/addCategory', [ProductController::class, 'storeCategory'])->name('addCategory');
 });
 
 Auth::routes();
