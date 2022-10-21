@@ -3,80 +3,8 @@
 @section('title', 'Info Produk')
 
 @section('content')
-
     <!-- Header -->
-    <div class="header right border-bottom">
-        <div class="container">
-            <!-- Logo -->
-            <div class="header-logo">
-                <h3><a href="#">mono</a></h3>
-                <!--
-                        <img class="logo-dark" src="{{ asset('frontend/asset') }}/images/your-logo-dark.png" alt="">
-                        <img class="logo-light" src="{{ asset('frontend/asset') }}/images/your-logo-light.png" alt="">
-                        -->
-            </div>
-            <!-- Menu -->
-            <div class="header-menu">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link Only</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dropdown</a>
-                        <ul class="nav-dropdown">
-                            <li class="nav-dropdown-item"><a class="nav-dropdown-link" href="#">Dropdown Item</a></li>
-                            <li class="nav-dropdown-item"><a class="nav-dropdown-link" href="#">Dropdown Item</a></li>
-                            <li class="nav-dropdown-item"><a class="nav-dropdown-link" href="#">Dropdown Item</a></li>
-                            <li class="nav-dropdown-item"><a class="nav-dropdown-link" href="#">Dropdown Item</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Subdropdown</a>
-                        <ul class="nav-dropdown">
-                            <li class="nav-dropdown-item">
-                                <a class="nav-dropdown-link" href="#">Dropdown Item</a>
-                                <ul class="nav-subdropdown">
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-dropdown-item">
-                                <a class="nav-dropdown-link" href="#">Dropdown Item</a>
-                                <ul class="nav-subdropdown">
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                    <li class="nav-subdropdown-item"><a class="nav-subdropdown-link"
-                                            href="#">Subdropdown Item</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <!-- Menu Extra -->
-            <div class="header-menu-extra">
-                <ul class="list-inline">
-                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                    <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                    <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-                </ul>
-            </div>
-            <!-- Menu Toggle -->
-            <button class="header-toggle">
-                <span></span>
-            </button>
-        </div><!-- end container -->
-    </div>
+    @include('frontend.layouts.header')
     <!-- end Header -->
 
     <div class="section">
@@ -85,21 +13,21 @@
                 <div class="col-12 col-lg-7">
                     <div class="owl-carousel product-carousel owl-dots-overlay-right">
                         <div data-hash="1">
-                            <img src="{{ asset('frontend/asset') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
                         </div>
                         <div data-hash="2">
-                            <img src="{{ asset('frontend/asset') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
                         </div>
                         <div data-hash="3">
-                            <img src="{{ asset('frontend/asset') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
                         </div>
                     </div>
                     <ul class="product-carousel-thumbnails">
-                        <li><a href="#1"><img src="{{ asset('frontend/asset') }}/images/col-2-square.jpg"
+                        <li><a href="#1"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
                                     alt=""></a></li>
-                        <li><a href="#2"><img src="{{ asset('frontend/asset') }}/images/col-2-square.jpg"
+                        <li><a href="#2"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
                                     alt=""></a></li>
-                        <li><a href="#3"><img src="{{ asset('frontend/asset') }}/images/col-2-square.jpg"
+                        <li><a href="#3"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
                                     alt=""></a></li>
                     </ul>
                 </div>
@@ -182,14 +110,14 @@
             <div class="margin-bottom-70 text-center">
                 <h3 class="fw-normal">Related Products</h3>
             </div>
-            <div class="owl-carousel" data-owl-dots="false" data-owl-autoplay="true" data-owl-margin="30"
-                data-owl-xs="1" data-owl-sm="2" data-owl-md="3" data-owl-lg="3" data-owl-xl="3">
+            <div class="owl-carousel" data-owl-dots="false" data-owl-autoplay="true" data-owl-margin="30" data-owl-xs="1"
+                data-owl-sm="2" data-owl-md="3" data-owl-lg="3" data-owl-xl="3">
                 <!-- Carousel Item 1 -->
                 <div class="product-box">
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/asset') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -221,7 +149,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/asset') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -253,7 +181,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/asset') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -285,7 +213,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/asset') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">

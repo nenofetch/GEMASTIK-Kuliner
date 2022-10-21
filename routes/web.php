@@ -16,11 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.user.index');
-});
+})->name('/');
 
 Route::get('/info-produk', function () {
     return view('frontend.user.produk');
-});
+})->name('info-produk');
+
+Route::get('/list-produk', function () {
+    return view('frontend.user.listProduk');
+})->name('list-produk');
+
+Route::get('/list-shop', function () {
+    return view('frontend.user.listShop');
+})->name('list-shop');
 
 Route::middleware(['role:User'])->group(function () {
     Route::resources(['home' => App\Http\Controllers\Backend\DashboardController::class]);
