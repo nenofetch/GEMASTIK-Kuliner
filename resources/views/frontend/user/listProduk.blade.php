@@ -26,7 +26,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-1.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">
@@ -60,7 +60,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-2.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">
@@ -94,7 +94,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-3.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">
@@ -128,7 +128,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-4.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">
@@ -162,7 +162,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-5.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">
@@ -196,7 +196,7 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/product-6.jpg" alt="">
                             </a>
                             {{-- <!-- Badge (left) -->
                             <div class="product-badge-left">

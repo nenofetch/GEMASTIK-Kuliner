@@ -7,23 +7,15 @@
     @include('frontend.layouts.header')
 
     <!-- Hero section -->
-    <div class="section-2xl bg-image parallax" data-bg-src="{{ asset('frontend/assets') }}/images/background.jpg"
-        id="home">
-        <div class="bg-black-06">
-            <div class="container">
-                <div class="row align-items-center g-5">
-                    <div class="col-12 col-lg-5 order-lg-2 text-center">
-                        <a class="button-circle button-circle-xl button-circle-white-3 button-circle-animation-drop button-hover-shrink lightbox-media-link"
-                            href="https://www.youtube.com/watch?v=W-j4QGAgNu8"><i class="fas fa-play"></i></a>
-                    </div>
-                    <div class="col-12 col-lg-7 order-lg-1 text-center text-lg-start">
-                        <h1 class="fw-normal">We transform brands & businesses from inside out</h1>
-                        <a class="button button-lg button-radius button-outline-white margin-top-20" href="#">Let's
-                            talk</a>
-                    </div>
-                </div><!-- end row -->
+    <div class="section-xl bg-image parallax" data-bg-src="{{ asset('frontend') }}/assets/images/background-1.jpg">
+        <div class="bg-black-05">
+            <div class="container text-center">
+                {{-- <h5 class="fw-light margin-bottom-20">Let us help you to</h5> --}}
+                <h1 class="display-4 fw-bold">Sistem Kuliner Kuningan</h1>
+                <a class="button button-xl button-rounded button-outline-white margin-top-20"
+                    href="{{ route('/') }}#about">learn more</a>
             </div><!-- end container -->
-        </div><!-- end bg-dark-* -->
+        </div>
     </div>
     <!-- end Hero section -->
 
@@ -79,7 +71,7 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-12 col-lg-6">
-                    <img class="border-radius-025" src="{{ asset('frontend/assets') }}/images/col-1.jpg" alt="">
+                    <img class="border-radius-025" src="{{ asset('frontend/assets') }}/images/about.jpg" alt="">
                 </div>
                 <div class="col-12 col-lg-6">
                     <h3 class="fw-light">Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</h3>
@@ -192,10 +184,10 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-1.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -215,10 +207,10 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-2.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -238,10 +230,10 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-3.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -261,10 +253,10 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-4.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -284,11 +276,11 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-5.jpg" alt="">
                             </a>
-                            <!-- Detail Shop -->
+                            <!-- Detail -->
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -308,10 +300,10 @@
                         <div class="product-img">
                             <!-- Product IMG -->
                             <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                                <img src="{{ asset('frontend/assets') }}/images/shop-6.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail Shop</a>
+                                <a href="#">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -333,22 +325,4 @@
         </div><!-- end container -->
     </div>
     <!-- end Products section -->
-
-    <!-- Parallax section -->
-    <div class="section-xl bg-image parallax" data-bg-src="{{ asset('frontend/assets') }}/images/background.jpg">
-        <div class="bg-black-06">
-            <div class="container text-center">
-                <div class="row g-4">
-                    <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-                        <h1 class="fw-light" data-sal="slide-up" data-sal-delay="50">We're ready to elevate your
-                            business, are you?</h1>
-                        <div class="margin-top-30" data-sal="slide-up" data-sal-delay="150">
-                            <a class="button button-lg button-radius button-outline-white" href="#">Let's Talk</a>
-                        </div>
-                    </div>
-                </div><!-- end row -->
-            </div><!-- end container -->
-        </div><!-- end bg-dark-* -->
-    </div>
-    <!-- end Parallax section -->
 @endsection
