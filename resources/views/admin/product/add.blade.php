@@ -73,7 +73,7 @@
                                                 class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">-- Pilih --</option>
                                                 @foreach ($categories as $row)
-                                                    <option value="{{ $row->id }}"
+                                                    <option id="categories_data" value="{{ $row->id }}"
                                                         {{ old('category_id') == $row->id ? 'selected' : '' }}>
                                                         {{ $row->name }}</option>
                                                 @endforeach
@@ -151,7 +151,7 @@
                     @csrf
                     <div class="modal-body">
                         <label class="form-label" for="name">Nama Kategori</label>
-                        <input type="text" class="form-control" id="name" name="name"
+                        <input type="text" class="form-control" id="category" name="name"
                             placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
                     </div>
                     <div class="modal-footer">
@@ -167,34 +167,42 @@
     <script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $("#formSave").submit(function(e) {
-                e.preventDefault();
-                let token = $("meta[name='csrf-token']").attr("content");
-                let category = $('#name').val();
-                $.ajax({
-                    url: "{{ route('storeCategory') }}",
-                    type: 'POST',
-                    data: {
-                        "name": name,
-                        "_token": token
-                    },
-                    success: function(response) {
-                        swal.fire({
-                            icon: 'success',
-                            title: 'Berhasil',
-                            text: response.status,
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                location.reload();
-                            }
-                        });
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                    }
-                });
+        $("#formSave").submit(function(e) {
+            e.preventDefault();
+            let token = $("meta[name='csrf-token']").attr("content");
+            let category = $('#category').val();
+            $.ajax({
+                url: "{{ route('storeCategory') }}",
+                type: 'POST',
+                data: {
+                    "name": name,
+                    "_token": token
+                },
+                success: function(response) {
+                    swal.fire({
+                        icon: 'success',
+                        title: `${response.message}`,
+                        text: response.status,
+                    });
+
+                    let data = `<option value="${response.data.id}>${response.data.name}</option>
+                    `
+                    $ {
+                        "#categories_data"
+                    }.append(data);
+
+                    $ {
+                        "#category"
+                    }.val('');
+
+                    $ {
+                        '#exampleModal'
+                    }.hide();
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
             });
-        })
+        });
     </script>
 @endsection

@@ -41,7 +41,7 @@ Route::middleware(['role:Administrator'])->group(function () {
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
-    Route::post('/storeCategory', [ProductController::class, 'storeCategory'])->name('storeCategory');
+    Route::post('/storeCategory', [App\Http\Controllers\Backend\ProductController::class, 'storeCategory'])->name('storeCategory');
 });
 
 //Toko

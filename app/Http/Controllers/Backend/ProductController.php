@@ -165,11 +165,15 @@ class ProductController extends Controller
 
     public function storeCategory(Request $request)
     {
-        Category::create([
+        $categories = Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-')
         ]);
 
-        return response()->json(['status' => 'Data berhasil ditambahkan!']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Ditambahkan!',
+            'data' => $categories
+        ]);
     }
 }
