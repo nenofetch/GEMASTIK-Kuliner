@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\Backend\UserController;
-=======
-use App\Http\Controllers\Backend\ProductController;
->>>>>>> 759d9eec22637644c70057099e0722fb52e23108
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,9 +53,5 @@ Route::resources(['produk' => App\Http\Controllers\Backend\ProductController::cl
 //change profile
 Route::get('/profile', [App\Http\Controllers\Backend\UserController::class, 'profile'])->name('profile');
 Route::put('/update-profile', [App\Http\Controllers\Backend\UserController::class, 'update_profile'])->name('update-profile');
-
-//Change password
-Route::get('/change-password', [App\Http\Controllers\Backend\UserController::class, 'change_password'])->name('change-password');
-Route::patch('/update-password', [App\Http\Controllers\Backend\UserController::class, 'update_password'])->name('update-password');
 
 Auth::routes();
