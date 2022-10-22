@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->string('dokumen')->nullable();
             $table->string('status')->nullable();
+            $table->string('longtitude')->nullable();
+            $table->string('latitude')->nullable();
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

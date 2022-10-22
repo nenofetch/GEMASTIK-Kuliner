@@ -19,6 +19,8 @@
     <!-- Datatables css -->
     <link href="{{ asset('assets') }}/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets') }}/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
+
+    @yield('styles')
 </head>
 
 <body class="loading"
@@ -74,6 +76,8 @@
 
     <!-- Datatable Init js -->
     <script src="{{ asset('assets') }}/js/pages/demo.datatable-init.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
