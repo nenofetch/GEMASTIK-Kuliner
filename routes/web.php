@@ -54,4 +54,6 @@ Route::resources(['produk' => App\Http\Controllers\Backend\ProductController::cl
 Route::get('/profile', [App\Http\Controllers\Backend\UserController::class, 'profile'])->name('profile');
 Route::put('/update-profile', [App\Http\Controllers\Backend\UserController::class, 'update_profile'])->name('update-profile');
 
+Route::get('/change-password', [App\Http\Controllers\Backend\UserController::class, 'change_password'])->name('change-password');
+Route::patch('/update-password', [App\Http\Controllers\Backend\UserController::class, 'update_password'])->name('update-password');
 Auth::routes();
