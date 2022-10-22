@@ -93,7 +93,7 @@ class TokoController extends Controller
         $toko = Toko::find($id);
         return view('admin.toko.detail', compact(['toko']));
     }
-    
+
     public function edit($id)
     {
         $toko = Toko::find($id);

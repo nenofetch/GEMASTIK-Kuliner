@@ -11,7 +11,7 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ asset('assets') }}/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" alt="user-image" class="rounded-circle">
                 </span>
                 <span>
                     <span class="account-user-name">{{ Auth::user()->name }}</span>
@@ -26,15 +26,15 @@
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('profile') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle me-1"></i>
-                    <span>Akun Saya</span>
+                    <span>Profile</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{ route('change-password') }}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-edit me-1"></i>
-                    <span>Pengaturan</span>
+                    <span>Ganti Password</span>
                 </a>
 
                 <!-- item-->

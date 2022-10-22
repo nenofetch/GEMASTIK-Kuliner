@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +37,24 @@ Route::middleware(['role:User'])->group(function () {
 
 Route::middleware(['role:Administrator'])->group(function () {
     Route::resources([
-        'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'kategori' => App\Http\Controllers\Backend\CategoryController::class,
-        'produk' => App\Http\Controllers\Backend\ProductController::class,
-        'toko' => App\Http\Controllers\Backend\TokoController::class,
+        'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
 });
+
+//Toko
+Route::resources(['toko' => App\Http\Controllers\Backend\TokoController::class]);
+
+//Produk
+Route::resources(['produk' => App\Http\Controllers\Backend\ProductController::class]);
+
+//change profile
+Route::get('/profile', [App\Http\Controllers\Backend\UserController::class, 'profile'])->name('profile');
+Route::put('/update-profile', [App\Http\Controllers\Backend\UserController::class, 'update_profile'])->name('update-profile');
+
+//Change password
+Route::get('/change-password', [App\Http\Controllers\Backend\UserController::class, 'change_password'])->name('change-password');
+Route::patch('/update-password', [App\Http\Controllers\Backend\UserController::class, 'update_password'])->name('update-password');
 
 Auth::routes();
