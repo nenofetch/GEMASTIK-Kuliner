@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use App\Http\Controllers\Backend\UserController;
+=======
+use App\Http\Controllers\Backend\ProductController;
+>>>>>>> 759d9eec22637644c70057099e0722fb52e23108
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +45,7 @@ Route::middleware(['role:Administrator'])->group(function () {
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
+    Route::post('/storeCategory', [ProductController::class, 'storeCategory'])->name('storeCategory');
 });
 
 //Toko

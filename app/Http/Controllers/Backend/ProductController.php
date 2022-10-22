@@ -163,16 +163,13 @@ class ProductController extends Controller
         return response()->json(['status' => 'Data berhasil dihapus!']);
     }
 
-    public function addCategory(Request $request) {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
+    public function storeCategory(Request $request)
+    {
         Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name, '-')
         ]);
 
-        return redirect()->with('msg', 'Kategori Sukses Ditambahkan');
+        return response()->json(['status' => 'Data berhasil ditambahkan!']);
     }
 }
