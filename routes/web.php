@@ -41,11 +41,11 @@ Route::middleware(['role:Administrator'])->group(function () {
         'dashboard' => App\Http\Controllers\Backend\DashboardController::class,
         'pengguna' => App\Http\Controllers\Backend\UserController::class,
     ]);
-    Route::post('/storeCategory', [App\Http\Controllers\Backend\ProductController::class, 'storeCategory'])->name('storeCategory');
 });
 
 //Toko
 Route::resources(['toko' => App\Http\Controllers\Backend\TokoController::class]);
+Route::post('/storeCategory', [App\Http\Controllers\Backend\ProductController::class, 'storeCategory'])->name('storeCategory');
 
 //Produk
 Route::resources(['produk' => App\Http\Controllers\Backend\ProductController::class]);

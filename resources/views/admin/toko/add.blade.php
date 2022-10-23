@@ -114,21 +114,17 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="map">Map</label>
+                                    <br>
+                                    @error('latitude')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
                                     <div id="map" style="width: 100%; height: 300px;"></div>
                                     <input type="text" name="longtitude" id="longtitude"
                                         class="form-control @error('longtitude') is-invalid @enderror" accept="image/*">
-                                    @error('longtitude')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                     <input type="text" name="latitude" id="latitude"
                                         class="form-control @error('latitude') is-invalid @enderror" accept="image/*">
-                                    @error('latitude')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -150,70 +146,34 @@
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.umd.js"></script>
 <script>
-    // var map = L.map('map').setView([51.505, -0.09], 13);
-
-    // const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	// 	maxZoom: 19,
-	// 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	// }).addTo(map);
+    var map = L.map('map').setView([-6.9874773, 108.306695], 11);
 
     const providerOSM = new GeoSearch.OpenStreetMapProvider();
 
-    var map = L.map('map', {
-        fullscreenControl: true,
-        fullscreenControl: {
-            pseudofullscreen: false,
-        },
-        minZoom: 2,
-    }).setView([0,0], 2);
-
     const tiles = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    // let marker = {};
+    let marker = {};
 
-    // map.on(events, function (e) {
-    //     let latitude = e.latlng.lat.toString().substring(0, 15);
-    //     let longtitude = e.latlng.lng.toString().substring(0, 15);
-
-    //     if (marker != undefined) {
-    //         map.removeLayer(marker)
-    //     }
-
-    //     var popup = L.popup()
-    //         .setLatLng([latitude, longtitude])
-    //         .setContent('Kordinat : ' + latitude + '-' + longtitude)
-    //         .openOn(map);
-        
-    //     marker = L.marker([latitude, longtitude]).addTo(map);
-    // });
-
-	// const marker = L.marker([51.5, -0.09]).addTo(map)
-	// 	.bindPopup('<b>Hello world!</b><br />I am a popup.').openPopup();
-
-    // const popup = L.popup()
-	// 	.setLatLng([51.513, -0.09])
-	// 	.setContent('I am a standalone popup.')
-	// 	.openOn(map);
+    var popup = L.popup();
 
     function onMapClick(e) {
-		// popup
-		// 	.setLatLng(e.latlng)
-		// 	.setContent(`You clicked the map at ${e.latlng.toString()}`)
-		// 	.openOn(map);
-
         let latitude = e.latlng.lat.toString().substring(0, 15);
         let longtitude = e.latlng.lng.toString().substring(0, 15);
-
+        
         if (marker != undefined) {
             map.removeLayer(marker)
         }
 
-        var popup = L.popup()
-            .setLatLng([latitude, longtitude])
-            .setContent('Kordinat : ' + latitude + '-' + longtitude)
-            .openOn(map);
+        document.querySelector('#latitude').value = latitude;
+        document.querySelector('#longtitude').value = longtitude;
+
+		popup
+			.setLatLng([latitude, longtitude])
+			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+			.openOn(map);
         
-        marker = L.marker([latitude, longtitude]).addTo(map);
+        marker = L.marker([latitude, longtitude]).addTo(map)
+            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
 	}
 
 	map.on('click', onMapClick);

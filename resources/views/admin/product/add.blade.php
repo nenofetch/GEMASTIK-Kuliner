@@ -151,7 +151,7 @@
                     @csrf
                     <div class="modal-body">
                         <label class="form-label" for="name">Nama Kategori</label>
-                        <input type="text" class="form-control" id="category" name="name"
+                        <input type="text" class="form-control" id="name" name="name"
                             placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
                     </div>
                     <div class="modal-footer">
@@ -170,6 +170,7 @@
         $("#formSave").submit(function(e) {
             e.preventDefault();
             let token = $("meta[name='csrf-token']").attr("content");
+            let name = $('#name').val();
             let category = $('#category').val();
             $.ajax({
                 url: "{{ route('storeCategory') }}",
@@ -181,8 +182,8 @@
                 success: function(response) {
                     swal.fire({
                         icon: 'success',
-                        title: `${response.message}`,
-                        text: response.status,
+                        title: 'Berhasil',
+                        text: response.message,
                     });
 
                     let data = `<option value="${response.data.id}>${response.data.name}</option>
