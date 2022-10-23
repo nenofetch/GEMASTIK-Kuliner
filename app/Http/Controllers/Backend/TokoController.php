@@ -83,11 +83,11 @@ class TokoController extends Controller
             'foto' => $path_foto,
             'dokumen' => $path_dokumen,
             'status' => 'pending',
-            'latitude' => $request->latitude,
             'longtitude' => $request->longtitude,
+            'latitude' => $request->latitude,
             'id_user' => Auth::user()->id
         ]);
-
+        
         Alert::success('Success', 'Data berhasil ditambahkan!');
         return redirect('/toko');
     }

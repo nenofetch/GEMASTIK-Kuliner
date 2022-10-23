@@ -2,6 +2,10 @@
 
 @section('title', 'Toko')
 
+@section('styles')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+@endsection
+
 @section('content')
     <!-- start page title -->
     <div class="row">
@@ -33,7 +37,7 @@
                             <tr>
                                 <th style="width: 30%;">Deskripsi</th>
                                 <td>:</td>
-                                <td>{{ $toko->deskripsi }}</th>
+                                <td>{{ $toko->deskripsi . $toko->latitude . $toko->longtitude}}</th>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Alamat</th>
@@ -69,6 +73,11 @@
                                     <td><span class="badge bg-danger">Ditolak</span></td>
                                 @endif
                             </tr>
+                            <tr>
+                                <th style="width: 30%;">Map</th>
+                                <td>:</td>
+                                <td><div id="map" style="width: 100%; height: 300px;"></div></th>
+                            </tr>
                         </table>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
@@ -88,3 +97,24 @@
         </div><!-- end col -->
     </div>
 @endsection
+
+@push('scripts')
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script>
+    var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
+
+    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    let marker = {};
+
+    var popup = L.popup();
+        
+    marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+
+    function onMapClick(e) {
+        marker.bindPopup('Toko : ' + {{ $toko->nama }}).openPopup();
+	}
+
+	map.on('click', onMapClick);
+</script>
+@endpush

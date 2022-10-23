@@ -5,6 +5,7 @@
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"/>
+{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
 @endsection
 
 @section('content')
@@ -121,8 +122,8 @@
                                         </small>
                                     @enderror
                                     <div id="map" style="width: 100%; height: 300px;"></div>
-                                    <input type="text" name="latitude" id="latitude" hidden>
-                                    <input type="text" name="longtitude" id="longtitude" hidden>
+                                    <input type="text" class="form-control" name="latitude" id="latitude">
+                                    <input type="text" class="form-control" name="longtitude" id="longtitude">
                                 </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -143,6 +144,7 @@
 @push('scripts')
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.umd.js"></script>
+{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
 <script>
     var map = L.map('map').setView([-6.9874773, 108.306695], 11);
 
@@ -178,7 +180,6 @@
         provider: new GeoSearch.OpenStreetMapProvider(),
         style: 'bar',
         searchLabel: 'Cari...',
-        showMarker: true
     });
 
     map.addControl(search);
