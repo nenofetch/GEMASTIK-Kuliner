@@ -107,7 +107,7 @@
 
     var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
 
-    marker.bindPopup('Toko : ' + <?= json_encode($toko->nama ) ?>).openPopup();
+    marker.bindPopup(<?= json_encode($toko->nama ) ?>).openPopup();
 
 </script>
 @endpush
