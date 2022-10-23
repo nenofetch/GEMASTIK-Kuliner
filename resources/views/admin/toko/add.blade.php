@@ -122,9 +122,9 @@
                                     @enderror
                                     <div id="map" style="width: 100%; height: 300px;"></div>
                                     <input type="text" name="longtitude" id="longtitude"
-                                        class="form-control @error('longtitude') is-invalid @enderror" accept="image/*">
+                                        class="form-control @error('longtitude') is-invalid @enderror" hidden>
                                     <input type="text" name="latitude" id="latitude"
-                                        class="form-control @error('latitude') is-invalid @enderror" accept="image/*">
+                                        class="form-control @error('latitude') is-invalid @enderror" hidden>
                                 </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -148,9 +148,7 @@
 <script>
     var map = L.map('map').setView([-6.9874773, 108.306695], 11);
 
-    const providerOSM = new GeoSearch.OpenStreetMapProvider();
-
-    const tiles = L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
     let marker = {};
 
@@ -179,7 +177,7 @@
 	map.on('click', onMapClick);
 
     const search = new GeoSearch.GeoSearchControl({
-        provider: providerOSM,
+        provider: new GeoSearch.OpenStreetMapProvider(),
         style: 'bar',
         searchLabel: 'Cari...',
         showMarker: true
