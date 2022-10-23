@@ -37,7 +37,7 @@
                             <tr>
                                 <th style="width: 30%;">Deskripsi</th>
                                 <td>:</td>
-                                <td>{{ $toko->deskripsi . $toko->latitude . $toko->longtitude}}</th>
+                                <td>{{ $toko->deskripsi}}</th>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Alamat</th>
@@ -105,16 +105,9 @@
 
     L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-    let marker = {};
+    var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
 
-    var popup = L.popup();
-        
-    marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+    // marker.bindPopup('Toko : ' + {{ $toko->nama }}).openPopup();
 
-    function onMapClick(e) {
-        marker.bindPopup('Toko : ' + {{ $toko->nama }}).openPopup();
-	}
-
-	map.on('click', onMapClick);
 </script>
 @endpush
