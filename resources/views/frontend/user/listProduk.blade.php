@@ -45,11 +45,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Jaya Linggarjati Coffee</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp50.000</span>
                             </div>
                         </div>
                     </div>
@@ -79,11 +78,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Opak Original Kartika</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp30.000</span>
                             </div>
                         </div>
                     </div>
@@ -113,11 +111,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Jeniper (Jeruk Nipis Peras)</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp75.000</span>
                             </div>
                         </div>
                     </div>
@@ -147,11 +144,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Ketempling</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp45.000</span>
                             </div>
                         </div>
                     </div>
@@ -181,11 +177,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Tahu Kopeci</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp10.000</span>
                             </div>
                         </div>
                     </div>
@@ -215,11 +210,10 @@
                         </div>
                         <div class="product-title">
                             <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                            <h6 class="fw-medium"><a href="#">Tape Ketan</a></h6>
                             <!-- Product Price -->
                             <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                                <span>Rp30.000</span>
                             </div>
                         </div>
                     </div>
