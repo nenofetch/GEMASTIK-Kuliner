@@ -13,21 +13,21 @@
                 <div class="col-12 col-lg-7">
                     <div class="owl-carousel product-carousel owl-dots-overlay-right">
                         <div data-hash="1">
-                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-1.jpg" alt="">
                         </div>
                         <div data-hash="2">
-                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-2.jpg" alt="">
                         </div>
                         <div data-hash="3">
-                            <img src="{{ asset('frontend/assets') }}/images/col-1-square.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-3.jpg" alt="">
                         </div>
                     </div>
                     <ul class="product-carousel-thumbnails">
-                        <li><a href="#1"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
+                        <li><a href="#1"><img src="{{ asset('frontend/assets') }}/images/product-1.jpg"
                                     alt=""></a></li>
-                        <li><a href="#2"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
+                        <li><a href="#2"><img src="{{ asset('frontend/assets') }}/images/product-2.jpg"
                                     alt=""></a></li>
-                        <li><a href="#3"><img src="{{ asset('frontend/assets') }}/images/col-2-square.jpg"
+                        <li><a href="#3"><img src="{{ asset('frontend/assets') }}/images/product-3.jpg"
                                     alt=""></a></li>
                     </ul>
                 </div>
@@ -117,7 +117,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-1.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -125,14 +125,9 @@
                             <span>New</span>
                         </div>
                         <!-- Badge (right) -->
-                        <div class="product-badge-right red">
-                            <!-- you can add: 'red/green' -->
-                            <span>-50%</span>
-                        </div>
+
                         <!-- Add to Cart -->
-                        <div class="add-to-cart">
-                            <a href="#">Add to Cart</a>
-                        </div>
+
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -149,7 +144,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-2.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -157,14 +152,9 @@
                             <span>New</span>
                         </div>
                         <!-- Badge (right) -->
-                        <div class="product-badge-right red">
-                            <!-- you can add: 'red/green' -->
-                            <span>-50%</span>
-                        </div>
+
                         <!-- Add to Cart -->
-                        <div class="add-to-cart">
-                            <a href="#">Add to Cart</a>
-                        </div>
+
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -181,7 +171,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-3.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -189,14 +179,9 @@
                             <span>New</span>
                         </div>
                         <!-- Badge (right) -->
-                        <div class="product-badge-right red">
-                            <!-- you can add: 'red/green' -->
-                            <span>-50%</span>
-                        </div>
+
                         <!-- Add to Cart -->
-                        <div class="add-to-cart">
-                            <a href="#">Add to Cart</a>
-                        </div>
+
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -213,7 +198,7 @@
                     <div class="product-img">
                         <!-- Product IMG -->
                         <a class="product-img-link" href="#">
-                            <img src="{{ asset('frontend/assets') }}/images/col-2-tall.jpg" alt="">
+                            <img src="{{ asset('frontend/assets') }}/images/product-4.jpg" alt="">
                         </a>
                         <!-- Badge (left) -->
                         <div class="product-badge-left">
@@ -221,14 +206,61 @@
                             <span>New</span>
                         </div>
                         <!-- Badge (right) -->
-                        <div class="product-badge-right red">
-                            <!-- you can add: 'red/green' -->
-                            <span>-50%</span>
-                        </div>
+
                         <!-- Add to Cart -->
-                        <div class="add-to-cart">
-                            <a href="#">Add to Cart</a>
+
+                    </div>
+                    <div class="product-title">
+                        <!-- Product Title -->
+                        <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                        <!-- Product Price -->
+                        <div class="price">
+                            <del>$98</del>
+                            <span>$49</span>
                         </div>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <div class="product-img">
+                        <!-- Product IMG -->
+                        <a class="product-img-link" href="#">
+                            <img src="{{ asset('frontend/assets') }}/images/product-5.jpg" alt="">
+                        </a>
+                        <!-- Badge (left) -->
+                        <div class="product-badge-left">
+                            <!-- you can add: 'red/green' -->
+                            <span>New</span>
+                        </div>
+                        <!-- Badge (right) -->
+
+                        <!-- Add to Cart -->
+
+                    </div>
+                    <div class="product-title">
+                        <!-- Product Title -->
+                        <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                        <!-- Product Price -->
+                        <div class="price">
+                            <del>$98</del>
+                            <span>$49</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-box">
+                    <div class="product-img">
+                        <!-- Product IMG -->
+                        <a class="product-img-link" href="#">
+                            <img src="{{ asset('frontend/assets') }}/images/product-6.jpg" alt="">
+                        </a>
+                        <!-- Badge (left) -->
+                        <div class="product-badge-left">
+                            <!-- you can add: 'red/green' -->
+                            <span>New</span>
+                        </div>
+                        <!-- Badge (right) -->
+
+                        <!-- Add to Cart -->
+
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->

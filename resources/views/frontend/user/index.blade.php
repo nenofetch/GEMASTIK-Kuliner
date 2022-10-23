@@ -187,7 +187,7 @@
                                 <img src="{{ asset('frontend/assets') }}/images/shop-1.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -210,7 +210,7 @@
                                 <img src="{{ asset('frontend/assets') }}/images/shop-2.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -233,7 +233,7 @@
                                 <img src="{{ asset('frontend/assets') }}/images/shop-3.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -256,7 +256,7 @@
                                 <img src="{{ asset('frontend/assets') }}/images/shop-4.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -280,7 +280,7 @@
                             </a>
                             <!-- Detail -->
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
@@ -303,7 +303,7 @@
                                 <img src="{{ asset('frontend/assets') }}/images/shop-6.jpg" alt="">
                             </a>
                             <div class="add-to-cart">
-                                <a href="#">Detail</a>
+                                <a href="{{ route('list-produk') }}">Detail</a>
                             </div>
                         </div>
                         <div class="product-title">
