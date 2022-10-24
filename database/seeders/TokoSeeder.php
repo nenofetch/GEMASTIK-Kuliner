@@ -23,8 +23,10 @@ class TokoSeeder extends Seeder
             'logo' => 'logo.jpg',
             'foto' => 'foto.jpg',
             'dokumen' => 'dokumen.pdf',
+            'latitude' => '-6.987815374206',
+            'longtitude' => '108.47213745117',
             'status' => 'pending',
-            'id_user' => '1',
+            'user_id' => '2',
         ]);
     }
 }

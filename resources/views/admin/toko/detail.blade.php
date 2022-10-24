@@ -35,6 +35,11 @@
                                 <td>{{ $toko->pemilik }}</th>
                             </tr>
                             <tr>
+                                <th style="width: 30%;">User</th>
+                                <td>:</td>
+                                <td>{{ $toko->user->name }}</th>
+                            </tr>
+                            <tr>
                                 <th style="width: 30%;">Deskripsi</th>
                                 <td>:</td>
                                 <td>{{ $toko->deskripsi}}</th>

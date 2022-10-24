@@ -16,14 +16,14 @@
         <ul class="side-nav">
 
             <li class="side-nav-title side-nav-item">Navigation</li>
+            <li class="side-nav-item">
+                <a href="{{ route('dashboard.index') }}" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    <span> Dashboard </span>
+                </a>
+            </li>
+            
             @if (Auth::user()->hasRole('Administrator'))
-                <li class="side-nav-item">
-                    <a href="{{ route('dashboard.index') }}" class="side-nav-link">
-                        <i class="uil-home-alt"></i>
-                        <span> Dashboard </span>
-                    </a>
-                </li>
-
                 <li class="side-nav-item">
                     <a href="{{ route('kategori.index') }}" class="side-nav-link">
                         <i class="uil-sitemap"></i>

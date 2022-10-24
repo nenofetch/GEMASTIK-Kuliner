@@ -35,7 +35,10 @@
                                 <th>Nama Toko</th>
                                 <th>Pemilik</th>
                                 <th>Alamat</th>
-                                <td>Status</td>
+                                <th>Status</th>
+                                @if (Auth::user()->hasRole('Administrator'))
+                                <th>User</th>
+                                @endif
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -54,10 +57,15 @@
                                     @elseif($row->status == 'ditolak')
                                         <td><span class="badge bg-danger">Ditolak</span></td>
                                     @endif
+                                    @if (Auth::user()->hasRole('Administrator'))
+                                    <td>{{ $row->user->name }}</td>
+                                    @endif
                                     <td>
                                         <div class="btn-group" role="group">
+                                            @if (Auth::user()->hasRole('Administrator'))
                                             <button type="button" onclick="window.location='/toko/<?= $row->id ?>'"
                                                 class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
+                                            @endif
                                             <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>
                                             <button class="btn btn-danger btndelete" data-id="{{ $row->id }}"><i

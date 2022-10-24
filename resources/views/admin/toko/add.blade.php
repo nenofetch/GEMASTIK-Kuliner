@@ -112,6 +112,26 @@
                                     @enderror
                                 </div>
                             </div>
+                            @if (Auth::user()->hasRole('Administrator'))
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="user_id">User</label>
+                                    <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                                        <option value="">-- Pilih --</option>
+                                        @foreach ($users as $row)
+                                        <option value="{{ $row->id }}"
+                                            {{ old('user_id') == $row->id ? 'selected' : '' }}>
+                                            {{ $row->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('user_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                            @endif
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="map">Map</label>

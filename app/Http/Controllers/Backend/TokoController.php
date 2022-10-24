@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Toko;
+use App\Models\User;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -26,7 +27,7 @@ class TokoController extends Controller
         } else {
             $id = Auth::user()->id;
             $data = [
-                'toko' => DB::table('toko')->where('id_user', $id)->get()
+                'toko' => DB::table('toko')->where('user_id', $id)->get()
             ];
         }
 
@@ -35,11 +36,18 @@ class TokoController extends Controller
 
     public function create()
     {
-        return view('admin.toko.add');
+        $data['users'] = User::all();
+        return view('admin.toko.add', $data);
     }
 
     public function store(Request $request)
     {
+        if (Auth::user()->hasRole('Administrator')) {
+            $rules = 'required';
+        } else {
+            $rules = '';
+        }
+
         $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
@@ -48,11 +56,13 @@ class TokoController extends Controller
             'logo' => 'mimes:jpg,png,jpeg|image|max:2048',
             'foto' => 'mimes:jpg,png,jpeg|image|max:2048',
             'dokumen' => 'required|mimes:jpg,png,jpeg,pdf|max:2048',
+            'user_id' => $rules
         ], [
             'nama.required' => 'Name field is required.',
             'pemilik.required' => 'Pemilik field is required.',
             'alamat.required' => 'Alamat field is required.',
             'latitude.required' => 'Map field is required.',
+            'user_id.required' => 'User field is required.',
         ]);
 
         if ($request->hasFile('logo')) {
@@ -74,19 +84,35 @@ class TokoController extends Controller
         }
 
         // $toko = Toko::create($request->all());
-        Toko::create([
-            'nama' => $request->nama,
-            'pemilik' => $request->pemilik,
-            'deskripsi' => $request->deskripsi,
-            'alamat' => $request->alamat,
-            'logo' => $path_logo,
-            'foto' => $path_foto,
-            'dokumen' => $path_dokumen,
-            'status' => 'pending',
-            'longtitude' => $request->longtitude,
-            'latitude' => $request->latitude,
-            'id_user' => Auth::user()->id
-        ]);
+        if (Auth::user()->hasRole('Administrator') == true) {
+            Toko::create([
+                'nama' => $request->nama,
+                'pemilik' => $request->pemilik,
+                'deskripsi' => $request->deskripsi,
+                'alamat' => $request->alamat,
+                'logo' => $path_logo,
+                'foto' => $path_foto,
+                'dokumen' => $path_dokumen,
+                'status' => 'pending',
+                'longtitude' => $request->longtitude,
+                'latitude' => $request->latitude,
+                'user_id' => $request->user_id
+            ]);
+        } else {
+            Toko::create([
+                'nama' => $request->nama,
+                'pemilik' => $request->pemilik,
+                'deskripsi' => $request->deskripsi,
+                'alamat' => $request->alamat,
+                'logo' => $path_logo,
+                'foto' => $path_foto,
+                'dokumen' => $path_dokumen,
+                'status' => 'pending',
+                'longtitude' => $request->longtitude,
+                'latitude' => $request->latitude,
+                'user_id' => Auth::user()->id
+            ]);
+        }
         
         Alert::success('Success', 'Data berhasil ditambahkan!');
         return redirect('/toko');
@@ -95,17 +121,25 @@ class TokoController extends Controller
     public function show($id)
     {
         $toko = Toko::find($id);
-        return view('admin.toko.detail', compact(['toko']));
+        $users = User::all();
+        return view('admin.toko.detail', compact('toko', 'users'));
     }
 
     public function edit($id)
     {
         $toko = Toko::find($id);
-        return view('admin.toko.edit', compact('toko'));
+        $users = User::all();
+        return view('admin.toko.edit', compact('toko', 'users'));
     }
 
     public function update($id, Request $request)
     {
+        if (Auth::user()->hasRole('Administrator')) {
+            $rules = 'required';
+        } else {
+            $rules = '';
+        }
+
         $request->validate([
             'nama' => 'required',
             'pemilik' => 'required',
@@ -113,10 +147,12 @@ class TokoController extends Controller
             'logo' => 'mimes:jpg,png,jpeg|image|max:2048',
             'foto' => 'mimes:jpg,png,jpeg|image|max:2048',
             'dokumen' => 'mimes:jpg,png,jpeg,pdf|max:2048',
+            'user_id' => $rules
         ], [
             'nama.required' => 'Name field is required.',
             'pemilik.required' => 'Pemilik field is required.',
             'alamat.required' => 'Alamat field is required.',
+            'user_id.required' => 'User field is required.',
         ]);
 
         $toko = Toko::find($id);
@@ -152,6 +188,7 @@ class TokoController extends Controller
                 'logo' => $path_logo,
                 'foto' => $path_foto,
                 'dokumen' => $path_dokumen,
+                'user_id' => $request->user_id,
                 'status' => $request->status_toko
             ]);
         } else {
