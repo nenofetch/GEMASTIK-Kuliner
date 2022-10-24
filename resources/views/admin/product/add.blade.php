@@ -96,7 +96,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="price">Harga</label>
-                                    <input type="text" class="form-control @error('price') is-invalid @enderror"
+                                    <input type="number" class="form-control @error('price') is-invalid @enderror"
                                         id="price" name="price" placeholder="Silakan masukan nama produk"
                                         value="{{ old('price') }}">
                                     @error('price')

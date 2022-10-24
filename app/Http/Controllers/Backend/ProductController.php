@@ -7,12 +7,19 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Toko;
 use Illuminate\Http\Request;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
+    use AuthenticatesUsers;
+    use HasRoles;
+
     /**
      * Display a listing of the resource.
      *
@@ -33,10 +40,19 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $data = [
-            'categories' => Category::all(),
-            'toko' => Toko::all(),
-        ];
+        if (Auth::user()->hasRole('Administrator')) {
+            $data = [
+                'categories' => Category::all(),
+                'toko' => Toko::all(),
+            ];
+        } else {
+            $id = Auth::user()->id;
+            $data = [
+                'categories' => Category::all(),
+                'toko' => DB::table('toko')->where('user_id', $id)->get()
+            ];
+        }
+
         return view('admin.product.add', $data);
     }
 
@@ -99,8 +115,14 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::all();
-        $toko = Toko::all();
+        if (Auth::user()->hasRole('Administrator')) {
+            $categories = Category::all();
+            $toko = Toko::all();
+        } else {
+            $iduser = Auth::user()->id;
+            $categories = Category::all();
+            $toko = DB::table('toko')->where('user_id', $iduser)->get();
+        }
 
         return view('admin.product.edit', compact('product', 'categories', 'toko'));
     }
