@@ -3,10 +3,10 @@
     <!-- LOGO -->
     <a href="index.html" class="logo text-center logo-light">
         <span class="logo-lg">
-            <img src="{{ asset('assets') }}/images/logo.png" alt="" height="16">
+            <img src="{{ asset('assets') }}/images/sikuku.png" alt="" height="50">
         </span>
         <span class="logo-sm">
-            <img src="{{ asset('assets') }}/images/logo_sm.png" alt="" height="16">
+            <img src="{{ asset('assets') }}/images/sikuku.png" alt="" height="50">
         </span>
     </a>
 

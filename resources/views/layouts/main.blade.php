@@ -9,7 +9,7 @@
     <meta content="Coderthemes" name="author">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets') }}/images/favicon.ico">
+    <link rel="shortcut icon" href="{{ asset('assets') }}/images/sikuku.png">
 
     <!-- App css -->
     <link href="{{ asset('assets') }}/css/icons.min.css" rel="stylesheet" type="text/css">

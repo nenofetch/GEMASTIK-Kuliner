@@ -3,7 +3,10 @@
     <div class="container">
         <!-- Logo -->
         <div class="header-logo">
-            <h3><a href="#">SIKUKU</a></h3>
+            <h3>
+                <img src="{{ asset('assets') }}/images/sikuku-logo.png" alt="logo"> 
+                <a href="#">SIKUKU</a>
+            </h3>
         </div>
         <!-- Menu -->
         <div class="header-menu">
