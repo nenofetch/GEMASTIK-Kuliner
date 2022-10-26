@@ -168,7 +168,10 @@
 <script>
     var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
 
-    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    });
+    openStreetMapMapnik.addTo(map);
 
     let marker = {};
 
@@ -195,10 +198,6 @@
 	}
 
 	map.on('click', onMapClick);
-
-    // L.Control.geocoder({
-    //     geocoder: L.Control.Geocoder.nominatim()
-    // }).addTo(map);
 
     const search = new GeoSearch.GeoSearchControl({
         provider: new GeoSearch.OpenStreetMapProvider(),
