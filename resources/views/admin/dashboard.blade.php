@@ -38,6 +38,7 @@
                             </div>
                         </div>
 
+                        @if (Auth::user()->hasRole('Administrator'))
                         <div class="col-sm-6 col-xl-3">
                             <div class="card shadow-none m-0 border-start">
                                 <div class="card-body text-center">
@@ -57,6 +58,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
 
                     </div> <!-- end row -->
                 </div>

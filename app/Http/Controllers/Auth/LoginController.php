@@ -43,10 +43,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->hasRole('Administrator')) {
-            return redirect()->route('dashboard.index');
-        }
-
-        return redirect()->route('toko.index');
+        return redirect()->route('dashboard.index');
     }
 }

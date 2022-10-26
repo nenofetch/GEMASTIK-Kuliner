@@ -4,8 +4,8 @@
 
 @section('styles')
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"/>
-{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
+{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"/> --}}
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 @endsection
 
 @section('content')
@@ -163,8 +163,8 @@
 
 @push('scripts')
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
-{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+{{-- <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script> --}}
+<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script>
     var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
 
@@ -196,12 +196,16 @@
 
 	map.on('click', onMapClick);
 
-    const search = new GeoSearch.GeoSearchControl({
-        provider: new GeoSearch.OpenStreetMapProvider(),
-        style: 'bar',
-        searchLabel: 'Cari...',
-    });
+    L.Control.geocoder({
+        geocoder: L.Control.Geocoder.nominatim()
+    }).addTo(map);
 
-    map.addControl(search);
+    // const search = new GeoSearch.GeoSearchControl({
+    //     provider: new GeoSearch.OpenStreetMapProvider(),
+    //     style: 'bar',
+    //     searchLabel: 'Cari...',
+    // });
+
+    // map.addControl(search);
 </script>
 @endpush
