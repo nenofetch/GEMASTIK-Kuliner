@@ -164,42 +164,6 @@
 @endsection
 
 @push('scripts')
-<<<<<<< HEAD
-    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
-        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
-    {{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
-    <script>
-        var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
-
-        let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        });
-        openStreetMapMapnik.addTo(map);
-
-        let marker = {};
-
-        var popup = L.popup();
-
-        function onMapClick(e) {
-            let latitude = e.latlng.lat.toString().substring(0, 15);
-            let longtitude = e.latlng.lng.toString().substring(0, 15);
-
-            if (marker != undefined) {
-                map.removeLayer(marker)
-            }
-
-            document.querySelector('#latitude').value = latitude;
-            document.querySelector('#longtitude').value = longtitude;
-
-            popup
-                .setLatLng([latitude, longtitude])
-                .setContent('Kordinat : ' + latitude + ' - ' + longtitude)
-                .openOn(map);
-
-            marker = L.marker([latitude, longtitude]).addTo(map)
-                .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
-=======
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
 {{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
@@ -221,7 +185,6 @@
         
         if (marker != undefined) {
             map.removeLayer(marker)
->>>>>>> 11e85d0e3970a4390a73889b5edb380079077ff7
         }
 
         map.on('click', onMapClick);
