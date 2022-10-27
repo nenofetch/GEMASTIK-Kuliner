@@ -115,10 +115,13 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="user_id">User</label>
-                                        <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
+                                        <select name="user_id" id="user_id"
+                                            class="form-control @error('user_id') is-invalid @enderror">
                                             <option value="">-- Pilih --</option>
                                             @foreach ($users as $row)
-                                            <option value="{{ $row->id }}" {{ $toko->user_id == $row->id ? 'selected' : '' }}>{{ $row->name }}</option>
+                                                <option value="{{ $row->id }}"
+                                                    {{ $toko->user_id == $row->id ? 'selected' : '' }}>{{ $row->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('user_id')

@@ -4,7 +4,7 @@
         <!-- Logo -->
         <div class="header-logo">
             <h3>
-                <img src="{{ asset('assets') }}/images/sikuku-logo.png" alt="logo"> 
+                <img src="{{ asset('assets') }}/images/sikuku-logo.png" alt="logo">
                 <a href="#">SIKUKU</a>
             </h3>
         </div>
@@ -15,16 +15,16 @@
                     <a class="nav-link" href="{{ route('/') }}#home">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('/') }}#about">About</a>
+                    <a class="nav-link" href="{{ route('/') }}#tentang">Tentang</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('/') }}#faq">FAQ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('/') }}#shop">Shop</a>
+                    <a class="nav-link" href="{{ route('/') }}#toko">Toko</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('list-produk') }}">Product</a>
+                    <a class="nav-link" href="{{ route('list-produk') }}">Produk</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>

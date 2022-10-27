@@ -15,17 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.user.index');
-})->name('/');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('/');
+Route::get('/list-produk', [App\Http\Controllers\ProductController::class, 'index'])->name('list-produk');
+Route::get('/info-produk/{id}', [App\Http\Controllers\ProductController::class, 'detail'])->name('info-produk');
 
-Route::get('/info-produk', function () {
-    return view('frontend.user.produk');
-})->name('info-produk');
-
-Route::get('/list-produk', function () {
-    return view('frontend.user.listProduk');
-})->name('list-produk');
 
 Route::get('/list-shop', function () {
     return view('frontend.user.listShop');

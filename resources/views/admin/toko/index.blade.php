@@ -37,7 +37,7 @@
                                 <th>Alamat</th>
                                 <th>Status</th>
                                 @if (Auth::user()->hasRole('Administrator'))
-                                <th>User</th>
+                                    <th>User</th>
                                 @endif
                                 <th>Aksi</th>
                             </tr>
@@ -58,13 +58,13 @@
                                         <td><span class="badge bg-danger">Ditolak</span></td>
                                     @endif
                                     @if (Auth::user()->hasRole('Administrator'))
-                                    <td>{{ $row->user->name }}</td>
+                                        <td>{{ $row->user->name }}</td>
                                     @endif
                                     <td>
                                         <div class="btn-group" role="group">
                                             @if (Auth::user()->hasRole('Administrator'))
-                                            <button type="button" onclick="window.location='/toko/<?= $row->id ?>'"
-                                                class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
+                                                <button type="button" onclick="window.location='/toko/<?= $row->id ?>'"
+                                                    class="btn btn-info me-2"><i class="mdi mdi-eye"></i></button>
                                             @endif
                                             <button type="button" onclick="window.location='/toko/<?= $row->id ?>/edit'"
                                                 class="btn btn-warning me-2"><i class="mdi mdi-pencil"></i></button>

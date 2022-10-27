@@ -13,7 +13,7 @@
                 <div class="col-12 col-lg-7">
                     <div class="owl-carousel product-carousel owl-dots-overlay-right">
                         <div data-hash="1">
-                            <img src="{{ asset('frontend/assets') }}/images/product-1.jpg" alt="">
+                            <img src="{{ asset('storage/' . $produk->image) }}" alt="">
                         </div>
                         <div data-hash="2">
                             <img src="{{ asset('frontend/assets') }}/images/product-2.jpg" alt="">
@@ -33,25 +33,15 @@
                 </div>
                 <div class="col-12 col-lg-5">
                     <ul class="list-inline-slash font-small margin-bottom-10">
-                        <li><a href="#">Technology</a></li>
-                        <li><a href="#">Smart Watch</a></li>
+                        <li><a href="#">{{ $produk->toko->nama }}</a></li>
+                        {{-- <li><a href="#">Smart Watch</a></li> --}}
                     </ul>
-                    <h3 class="fw-normal margin-0">Product Title</h3>
+                    <h3 class="fw-normal margin-0">{{ $produk->name }}</h3>
                     <div class="product-price">
-                        <h5 class="fw-light"><del>$399</del><ins>$360</ins></h5>
+                        <h5 class="fw-light">Rp. {{ $produk->price }}</h5>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    <form class="product-quantity margin-top-30">
-                        <div class="qnt">
-                            <input type="number" id="quantity" name="quantity" min="1" max="10"
-                                value="1">
-                        </div>
-                        <button class="button button-md button-dark" type="submit">Add to Cart</button>
-                    </form>
-                    <div class="margin-top-30">
-                        <p>SKU: 7777</p>
-                        <a class="button-text-1 margin-top-10" href="#">Add to Wishlist</a>
-                    </div>
+                    <p>{{ $produk->description }}
+                    <p>
                 </div>
             </div><!-- end row -->
         </div><!-- end container -->
@@ -59,40 +49,9 @@
 
     <div class="container">
         <div class="product-info-box">
-            <ul class="nav margin-bottom-20">
-                <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#specs">Specifications</button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#additional-info">Additional
-                        Info</button>
-                </li>
-            </ul>
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="specs">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <th scope="row g-4">Weight</th>
-                                <td>25 g</td>
-                            </tr>
-                            <tr>
-                                <th scope="row g-4">Dimension</th>
-                                <td>38.6 x 33.3 x 10.5 mm</td>
-                            </tr>
-                            <tr>
-                                <th scope="row g-4">Color</th>
-                                <td>Space Gray, Rose, White</td>
-                            </tr>
-                            <tr>
-                                <th scope="row g-4">Care</th>
-                                <td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                                    dolor.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="additional-info">
+                <div class="tab-pane fade show active" id="additional-info">
+                    <h4>Deskripsi Produk</h4>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
                         massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
                         quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
@@ -119,19 +78,10 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-1.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
-                        <h6 class="fw-medium"><a href="#">Product title</a></h6>
+                        <h6 class="fw-medium"><a href="~">Product title</a></h6>
                         <!-- Product Price -->
                         <div class="price">
                             <del>$98</del>
@@ -146,15 +96,6 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-2.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -173,15 +114,6 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-3.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -200,15 +132,6 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-4.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -226,15 +149,6 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-5.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->
@@ -252,15 +166,6 @@
                         <a class="product-img-link" href="#">
                             <img src="{{ asset('frontend/assets') }}/images/product-6.jpg" alt="">
                         </a>
-                        <!-- Badge (left) -->
-                        <div class="product-badge-left">
-                            <!-- you can add: 'red/green' -->
-                            <span>New</span>
-                        </div>
-                        <!-- Badge (right) -->
-
-                        <!-- Add to Cart -->
-
                     </div>
                     <div class="product-title">
                         <!-- Product Title -->

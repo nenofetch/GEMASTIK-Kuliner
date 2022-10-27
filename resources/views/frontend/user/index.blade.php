@@ -13,18 +13,18 @@
                 {{-- <h5 class="fw-light margin-bottom-20">Let us help you to</h5> --}}
                 <h1 class="display-4 fw-bold">Sistem Kuliner Kuningan</h1>
                 <a class="button button-xl button-rounded button-outline-white margin-top-20"
-                    href="{{ route('/') }}#about">learn more</a>
+                    href="{{ route('/') }}#tentang">Tentang</a>
             </div><!-- end container -->
         </div>
     </div>
     <!-- end Hero section -->
 
     <!-- About section -->
-    <div class="section-sm" id="about">
+    <div class="section-sm" id="tentang">
         <div class="container icon-5xl">
             <div class="row text-center">
                 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                    <h3 class="font-family-secondary">About</h3>
+                    <h3 class="font-family-secondary">Tentang</h3>
                     <div class="divider-zigzag divider-zigzag-color-black-07">
                         <span></span><span></span><span></span>
                     </div>
@@ -77,7 +77,6 @@
                     <h3 class="fw-light">Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</h3>
                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean massa. Cum sociis natoque penatibus
                         et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    <a class="button-text-2 margin-top-20" href="#">Read more</a>
                 </div>
             </div><!-- end row -->
         </div><!-- end container -->
@@ -165,158 +164,45 @@
         </div><!-- end container -->
     </div>
 
-    <!-- Shop section -->
-    <div class="section-sm border-top" id="shop">
+    <!-- toko section -->
+    <div class="section-sm border-top" id="toko">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                    <h3 class="font-family-secondary">Shop</h3>
+                    <h3 class="font-family-secondary">Toko</h3>
                     <div class="divider-zigzag divider-zigzag-color-black-07">
                         <span></span><span></span><span></span>
                     </div>
                 </div>
             </div>
-            <!-- Shop -->
+            <!-- toko -->
             <div class="row g-3 margin-top-50">
-                <!-- Product box 1 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-1.jpg" alt="">
-                            </a>
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
+                <!-- Product box -->
+                @foreach ($toko as $row)
+                    <div class="col-12 col-sm-6 col-lg-4">
+                        <div class="product-box">
+                            <div class="product-img">
+                                <!-- Product IMG -->
+                                <a class="product-img-link" href="#">
+                                    <img src="{{ asset('storage/' . $row->foto) }}" alt="{{ $row->nama }}" width="100"
+                                        height="100">
+                                </a>
+                                <div class="add-to-cart">
+                                    <a href="{{ route('list-produk') }}">Detail</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product box 2 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-2.jpg" alt="">
-                            </a>
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
+                            <div class="product-title">
+                                <!-- Product Title -->
+                                <h6 class="fw-medium"><a href="#">{{ $row->nama }}</a></h6>
+                                <!-- Product Price -->
+                                <div class="price">
+                                    {{ $row->alamat }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Product box 3 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-3.jpg" alt="">
-                            </a>
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product box 4 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-4.jpg" alt="">
-                            </a>
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product box 5 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-5.jpg" alt="">
-                            </a>
-                            <!-- Detail -->
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product box 6 -->
-                <div class="col-12 col-sm-6 col-lg-4">
-                    <div class="product-box">
-                        <div class="product-img">
-                            <!-- Product IMG -->
-                            <a class="product-img-link" href="#">
-                                <img src="{{ asset('frontend/assets') }}/images/shop-6.jpg" alt="">
-                            </a>
-                            <div class="add-to-cart">
-                                <a href="{{ route('list-produk') }}">Detail</a>
-                            </div>
-                        </div>
-                        <div class="product-title">
-                            <!-- Product Title -->
-                            <h6 class="fw-medium"><a href="#">Product title</a></h6>
-                            <!-- Product Price -->
-                            <div class="price">
-                                <del>$98</del>
-                                <span>$49</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div><!-- end row -->
             <!-- Pagination -->
             <div class="text-center margin-top-50">

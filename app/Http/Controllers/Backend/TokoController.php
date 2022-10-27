@@ -113,7 +113,7 @@ class TokoController extends Controller
                 'user_id' => Auth::user()->id
             ]);
         }
-        
+
         Alert::success('Success', 'Data berhasil ditambahkan!');
         return redirect('/toko');
     }

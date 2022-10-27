@@ -3,9 +3,10 @@
 @section('title', 'Toko')
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css"/>
-{{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
 @endsection
 
 @section('content')
@@ -113,24 +114,25 @@
                                 </div>
                             </div>
                             @if (Auth::user()->hasRole('Administrator'))
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="user_id">User</label>
-                                    <select name="user_id" id="user_id" class="form-control @error('user_id') is-invalid @enderror">
-                                        <option value="">-- Pilih --</option>
-                                        @foreach ($users as $row)
-                                        <option value="{{ $row->id }}"
-                                            {{ old('user_id') == $row->id ? 'selected' : '' }}>
-                                            {{ $row->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('user_id')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="user_id">User</label>
+                                        <select name="user_id" id="user_id"
+                                            class="form-control @error('user_id') is-invalid @enderror">
+                                            <option value="">-- Pilih --</option>
+                                            @foreach ($users as $row)
+                                                <option value="{{ $row->id }}"
+                                                    {{ old('user_id') == $row->id ? 'selected' : '' }}>
+                                                    {{ $row->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('user_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
                             @endif
                             <div class="col-md-12">
                                 <div class="mb-3">
@@ -162,54 +164,55 @@
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
-{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
-<script>
-    var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+    {{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+    <script>
+        var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
 
-    let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-    });
-    openStreetMapMapnik.addTo(map);
+        let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        });
+        openStreetMapMapnik.addTo(map);
 
-    let marker = {};
+        let marker = {};
 
-    var popup = L.popup();
+        var popup = L.popup();
 
-    function onMapClick(e) {
-        let latitude = e.latlng.lat.toString().substring(0, 15);
-        let longtitude = e.latlng.lng.toString().substring(0, 15);
-        
-        if (marker != undefined) {
-            map.removeLayer(marker)
+        function onMapClick(e) {
+            let latitude = e.latlng.lat.toString().substring(0, 15);
+            let longtitude = e.latlng.lng.toString().substring(0, 15);
+
+            if (marker != undefined) {
+                map.removeLayer(marker)
+            }
+
+            document.querySelector('#latitude').value = latitude;
+            document.querySelector('#longtitude').value = longtitude;
+
+            popup
+                .setLatLng([latitude, longtitude])
+                .setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+                .openOn(map);
+
+            marker = L.marker([latitude, longtitude]).addTo(map)
+                .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
         }
 
-        document.querySelector('#latitude').value = latitude;
-        document.querySelector('#longtitude').value = longtitude;
+        map.on('click', onMapClick);
 
-		popup
-			.setLatLng([latitude, longtitude])
-			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
-			.openOn(map);
-        
-        marker = L.marker([latitude, longtitude]).addTo(map)
-            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
-	}
+        const search = new GeoSearch.GeoSearchControl({
+            provider: new GeoSearch.OpenStreetMapProvider(),
+            style: 'bar',
+            searchLabel: 'Cari...',
+            autoComplete: true,
+            autoCompleteDelay: 250,
+            showMarker: true,
+            showPopup: true,
+            retainZoomLevel: true,
+        });
 
-	map.on('click', onMapClick);
-
-    const search = new GeoSearch.GeoSearchControl({
-        provider: new GeoSearch.OpenStreetMapProvider(),
-        style: 'bar',
-        searchLabel: 'Cari...',
-        autoComplete: true,
-        autoCompleteDelay: 250,
-        showMarker: true,
-        showPopup: true,
-        retainZoomLevel: true,
-    });
-
-    map.addControl(search);
-</script>
+        map.addControl(search);
+    </script>
 @endpush
