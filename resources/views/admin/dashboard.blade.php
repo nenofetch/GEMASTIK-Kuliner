@@ -73,7 +73,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Data Map Toko</h3>
+                    <h4>Data Map Toko</h4>
                 </div>
                 <div class="card-body">
                     <div id="map" style="width: 100%; height: 300px;"></div>
