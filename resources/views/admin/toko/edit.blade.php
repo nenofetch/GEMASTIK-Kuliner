@@ -2,6 +2,13 @@
 
 @section('title', 'Toko')
 
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <div class="row">
@@ -148,6 +155,20 @@
                                     </div>
                                 </div>
                             @endif
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="map">Map</label>
+                                    <br>
+                                    @error('latitude')
+                                        <small class="text-danger">
+                                            {{ $message }}
+                                        </small>
+                                    @enderror
+                                    <div id="map" style="width: 100%; height: 300px;"></div>
+                                    <input type="text" class="form-control" name="latitude" id="latitude" hidden>
+                                    <input type="text" class="form-control" name="longtitude" id="longtitude" hidden>
+                                </div>
+                            </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button type="submit" class="btn btn-primary mb-3" id="save">
                                     Simpan
@@ -162,3 +183,58 @@
         </div><!-- end col -->
     </div>
 @endsection
+
+@push('scripts')
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+<script>
+    var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
+
+    
+    let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    });
+    
+    openStreetMapMapnik.addTo(map);
+    
+    var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+
+    marker.bindPopup(<?= json_encode($toko->nama ) ?>).openPopup();
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        let latitude = e.latlng.lat.toString().substring(0, 15);
+        let longtitude = e.latlng.lng.toString().substring(0, 15);
+        
+        if (marker != undefined) {
+            map.removeLayer(marker)
+        }
+        
+        document.querySelector('#latitude').value = latitude;
+        document.querySelector('#longtitude').value = longtitude;
+		popup
+			.setLatLng([latitude, longtitude])
+			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+			.openOn(map);
+        
+        marker = L.marker([latitude, longtitude]).addTo(map)
+            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
+	}
+
+	map.on('click', onMapClick);
+
+    const search = new GeoSearch.GeoSearchControl({
+        provider: new GeoSearch.OpenStreetMapProvider(),
+        style: 'bar',
+        searchLabel: 'Cari...',
+        autoComplete: true,
+        autoCompleteDelay: 250,
+        showMarker: true,
+        showPopup: true,
+        retainZoomLevel: true,
+    });
+    map.addControl(search);
+</script>
+@endpush

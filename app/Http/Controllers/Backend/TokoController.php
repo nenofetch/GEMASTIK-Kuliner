@@ -144,6 +144,7 @@ class TokoController extends Controller
             'nama' => 'required',
             'pemilik' => 'required',
             'alamat' => 'required',
+            'latitude' => 'required',
             'logo' => 'mimes:jpg,png,jpeg|image|max:2048',
             'foto' => 'mimes:jpg,png,jpeg|image|max:2048',
             'dokumen' => 'mimes:jpg,png,jpeg,pdf|max:2048',
@@ -152,6 +153,7 @@ class TokoController extends Controller
             'nama.required' => 'Name field is required.',
             'pemilik.required' => 'Pemilik field is required.',
             'alamat.required' => 'Alamat field is required.',
+            'latitude.required' => 'Map field is required.',
             'user_id.required' => 'User field is required.',
         ]);
 
@@ -189,6 +191,8 @@ class TokoController extends Controller
                 'foto' => $path_foto,
                 'dokumen' => $path_dokumen,
                 'user_id' => $request->user_id,
+                'longtitude' => $request->longtitude,
+                'latitude' => $request->latitude,
                 'status' => $request->status_toko
             ]);
         } else {
@@ -199,6 +203,8 @@ class TokoController extends Controller
                 'alamat' => $request->alamat,
                 'logo' => $path_logo,
                 'foto' => $path_foto,
+                'longtitude' => $request->longtitude,
+                'latitude' => $request->latitude,
                 'dokumen' => $path_dokumen,
             ]);
         }

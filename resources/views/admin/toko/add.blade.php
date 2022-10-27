@@ -171,8 +171,9 @@
     var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
 
     let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 30,
+      maxZoom: 19,
     });
+    
     openStreetMapMapnik.addTo(map);
 
     let marker = {};
@@ -186,8 +187,19 @@
         if (marker != undefined) {
             map.removeLayer(marker)
         }
-    }
-    map.on('click', onMapClick);
+
+        document.querySelector('#latitude').value = latitude;
+        document.querySelector('#longtitude').value = longtitude;
+		popup
+			.setLatLng([latitude, longtitude])
+			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+			.openOn(map);
+        
+        marker = L.marker([latitude, longtitude]).addTo(map)
+            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
+	}
+
+	map.on('click', onMapClick);
 
     const search = new GeoSearch.GeoSearchControl({
         provider: new GeoSearch.OpenStreetMapProvider(),
