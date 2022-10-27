@@ -73,9 +73,10 @@
                                                 class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">-- Pilih --</option>
                                                 @foreach ($categories as $row)
-                                                    <option id="categories_data" value="{{ $row->id }}"
+                                                    {{-- <option id="categories_data" value="{{ $row->id }}"
                                                         {{ old('category_id') == $row->id ? 'selected' : '' }}>
-                                                        {{ $row->name }}</option>
+                                                        {{ $row->name }}</option> --}}
+                                                        <option id="categories_data"></option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -147,18 +148,15 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" id="formSave">
-                    @csrf
                     <div class="modal-body">
                         <label class="form-label" for="name">Nama Kategori</label>
-                        <input type="text" class="form-control" id="name" name="name"
+                        <input type="text" class="form-control" id="nameCateg" name="name"
                             placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary" id="saveCateg">Simpan</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -167,14 +165,14 @@
     <script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $("#formSave").submit(function(e) {
+        $("#saveCateg").click(function(e) {
             e.preventDefault();
             let token = $("meta[name='csrf-token']").attr("content");
-            let name = $('#name').val();
-            let category = $('#category').val();
+            let name = $('#nameCateg').val();
             $.ajax({
-                url: "{{ route('storeCategory') }}",
-                type: 'POST',
+                url: `/storeCategory`,
+                type: "POST",
+                dataType: "json",
                 data: {
                     "name": name,
                     "_token": token
@@ -186,19 +184,13 @@
                         text: response.message,
                     });
 
-                    let data = `<option value="${response.data.id}>${response.data.name}</option>
-                    `
-                    $ {
-                        "#categories_data"
-                    }.append(data);
+                    let category = `<option value="${response.data.id}>${response.data.name}</option>`;
 
-                    $ {
-                        "#category"
-                    }.val('');
+                    $('#categories_data').append(category);
 
-                    $ {
-                        '#exampleModal'
-                    }.hide();
+                    $('#name').val('');
+
+                    $('#exampleModal').modal(hide);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
