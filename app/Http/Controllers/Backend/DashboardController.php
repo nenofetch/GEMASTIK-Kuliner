@@ -23,6 +23,7 @@ class DashboardController extends Controller
                 'product' => Product::all()->count(),
                 'category' => Category::all()->count(),
                 'users' => User::all()->count(),
+                'maps' => Toko::all(),
             ];
         } else {
             $iduser = Auth::user()->id;

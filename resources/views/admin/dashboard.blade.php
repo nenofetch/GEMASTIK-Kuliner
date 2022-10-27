@@ -2,6 +2,13 @@
 
 @section('title', 'Dashboard')
 
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@3.0.0/dist/geosearch.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" /> --}}
+@endsection
+
 @section('content')
     <!-- start page title -->
     <div class="row">
@@ -58,12 +65,41 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
-
                     </div> <!-- end row -->
+                    @endif
                 </div>
             </div> <!-- end card-box-->
         </div> <!-- end col-->
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Data Map Toko</h3>
+                </div>
+                <div class="card-body">
+                    <div id="map" style="width: 100%; height: 300px;"></div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- end row-->
 @endsection
+
+@push('scripts')
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+<script>
+    var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
+
+    let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+    });
+    
+    openStreetMapMapnik.addTo(map);
+
+    @foreach ($maps as $row)
+    var marker = L.marker([{{ $row->latitude }}, {{ $row->longtitude }}]).addTo(map);
+    marker.bindPopup(<?= json_encode($row->nama ) ?>).openPopup();
+    @endforeach
+</script>
+@endpush
