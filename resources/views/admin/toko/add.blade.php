@@ -169,7 +169,7 @@
     var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
 
     let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 30,
     });
     openStreetMapMapnik.addTo(map);
 

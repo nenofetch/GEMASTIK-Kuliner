@@ -147,8 +147,6 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post" id="formSave">
-                    @csrf
                     <div class="modal-body">
                         <label class="form-label" for="name">Nama Kategori</label>
                         <input type="text" class="form-control" id="name" name="name"
@@ -156,9 +154,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <button type="submit" class="btn btn-primary" id="saveCateg">Simpan</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
@@ -167,14 +164,14 @@
     <script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $("#formSave").submit(function(e) {
+        $("#saveCateg").click(function(e) {
             e.preventDefault();
             let token = $("meta[name='csrf-token']").attr("content");
             let name = $('#name').val();
-            let category = $('#category').val();
             $.ajax({
-                url: "{{ route('storeCategory') }}",
-                type: 'POST',
+                url: `/storeCategory`,
+                type: "POST",
+                cache: false,
                 data: {
                     "name": name,
                     "_token": token
@@ -186,19 +183,13 @@
                         text: response.message,
                     });
 
-                    let data = `<option value="${response.data.id}>${response.data.name}</option>
-                    `
-                    $ {
-                        "#categories_data"
-                    }.append(data);
+                    let category = `<option value="${response.data.id}>${response.data.name}</option>`;
 
-                    $ {
-                        "#category"
-                    }.val('');
+                    $('#categories_data').append(category);
 
-                    $ {
-                        '#exampleModal'
-                    }.hide();
+                    $('#name').val('');
+
+                    $('#exampleModal').modal(hide);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
