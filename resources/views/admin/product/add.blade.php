@@ -171,7 +171,7 @@
             $.ajax({
                 url: `/storeCategory`,
                 type: "POST",
-                cache: false,
+                dataType: "json",
                 data: {
                     "name": name,
                     "_token": token
