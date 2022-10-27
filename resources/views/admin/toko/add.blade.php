@@ -186,20 +186,19 @@
         if (marker != undefined) {
             map.removeLayer(marker)
         }
+    }
+    map.on('click', onMapClick);
 
-        map.on('click', onMapClick);
-
-        const search = new GeoSearch.GeoSearchControl({
-            provider: new GeoSearch.OpenStreetMapProvider(),
-            style: 'bar',
-            searchLabel: 'Cari...',
-            autoComplete: true,
-            autoCompleteDelay: 250,
-            showMarker: true,
-            showPopup: true,
-            retainZoomLevel: true,
-        });
-
-        map.addControl(search);
-    </script>
+    const search = new GeoSearch.GeoSearchControl({
+        provider: new GeoSearch.OpenStreetMapProvider(),
+        style: 'bar',
+        searchLabel: 'Cari...',
+        autoComplete: true,
+        autoCompleteDelay: 250,
+        showMarker: true,
+        showPopup: true,
+        retainZoomLevel: true,
+    });
+    map.addControl(search);
+</script>
 @endpush
