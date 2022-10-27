@@ -135,18 +135,50 @@
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Kategori</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('storeCategory') }}" method="post">
-            @csrf
                 <div class="modal-body">
                     <label class="form-label" for="name">Nama Kategori</label>
-                    <input type="text" class="form-control" name="name" placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
+                    <input type="text" class="form-control" id="nameCateg" name="name"
+                        placeholder="Silakan masukan nama kategori" autofocus value="{{ old('name') }}" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary" id="saveCateg">Simpan</button>
                 </div>
-            </form>
         </div>
     </div>
 </div>
+
+@include('sweetalert::alert')
+<script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $("#saveCateg").click(function(e) {
+        e.preventDefault();
+        let token = $("meta[name='csrf-token']").attr("content");
+        let name = $('#nameCateg').val();
+        $.ajax({
+            url: `/storeCategory`,
+            type: "POST",
+            dataType: "json",
+            data: {
+                "name": name,
+                "_token": token
+            },
+            success: function(response) {
+                swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil',
+                    text: response.message,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        });
+    });
+</script>
 @endsection

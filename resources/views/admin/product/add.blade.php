@@ -73,10 +73,9 @@
                                                 class="form-control @error('category_id') is-invalid @enderror">
                                                 <option value="">-- Pilih --</option>
                                                 @foreach ($categories as $row)
-                                                    {{-- <option id="categories_data" value="{{ $row->id }}"
+                                                    <option id="categories_data" value="{{ $row->id }}"
                                                         {{ old('category_id') == $row->id ? 'selected' : '' }}>
-                                                        {{ $row->name }}</option> --}}
-                                                        <option id="categories_data"></option>
+                                                        {{ $row->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -182,15 +181,11 @@
                         icon: 'success',
                         title: 'Berhasil',
                         text: response.message,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
                     });
-
-                    let category = `<option value="${response.data.id}>${response.data.name}</option>`;
-
-                    $('#categories_data').append(category);
-
-                    $('#name').val('');
-
-                    $('#exampleModal').modal(hide);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
