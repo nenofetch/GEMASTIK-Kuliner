@@ -192,11 +192,7 @@
     var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
 
     
-    let openStreetMapMapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-    });
-    
-    openStreetMapMapnik.addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
     
     var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
 
