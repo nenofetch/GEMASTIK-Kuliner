@@ -27,9 +27,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = [
-            'products' => Product::all()
-        ];
+        if (Auth::user()->hasRole('Administrator')) {
+            $data = [
+                'products' => Product::all(),
+            ];
+        } else {
+            $toko = Toko::where('user_id', Auth::user()->id)->get();
+
+            foreach($toko as $row) {
+                $idtoko = $row->id;
+            }
+
+            $data = [
+                'products' => Product::where('toko_id', $idtoko)->get(),
+            ];
+        }
         return view('admin.product.index', $data);
     }
 
@@ -147,7 +159,7 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image') != '') {
             Storage::delete($product->image);
             $path = $request->file('image')->store('uploads/products');
         } else {

@@ -24,7 +24,11 @@
             <div class="card widget-inline">
                 <div class="card-body p-0">
                     <div class="row g-0">
+                        @if (Auth::user()->hasRole('Administrator'))
+                        <div class="col-sm-6 col-xl-3">
+                        @else
                         <div class="col-sm-6 col-xl-6">
+                        @endif
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="uil-shop text-muted" style="font-size: 24px;"></i>
@@ -34,7 +38,11 @@
                             </div>
                         </div>
 
+                        @if (Auth::user()->hasRole('Administrator'))
+                        <div class="col-sm-6 col-xl-3">
+                        @else
                         <div class="col-sm-6 col-xl-6">
+                        @endif
                             <div class="card shadow-none m-0 border-start">
                                 <div class="card-body text-center">
                                     <i class="uil-cart text-muted" style="font-size: 24px;"></i>
