@@ -24,7 +24,7 @@
             <div class="card widget-inline">
                 <div class="card-body p-0">
                     <div class="row g-0">
-                        <div class="col-sm-6 col-xl-3">
+                        <div class="col-sm-6 col-xl-6">
                             <div class="card shadow-none m-0">
                                 <div class="card-body text-center">
                                     <i class="uil-shop text-muted" style="font-size: 24px;"></i>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-xl-3">
+                        <div class="col-sm-6 col-xl-6">
                             <div class="card shadow-none m-0 border-start">
                                 <div class="card-body text-center">
                                     <i class="uil-cart text-muted" style="font-size: 24px;"></i>
@@ -69,6 +69,7 @@
                 </div>
             </div> <!-- end card-box-->
         </div> <!-- end col-->
+        @if (Auth::user()->hasRole('Administrator'))
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
@@ -79,10 +80,12 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     <!-- end row-->
 @endsection
 
+@if (Auth::user()->hasRole('Administrator'))
 @push('scripts')
 <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
 <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
@@ -101,3 +104,4 @@
     @endforeach
 </script>
 @endpush
+@endif
