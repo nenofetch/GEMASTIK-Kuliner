@@ -78,26 +78,44 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="logo">Logo</label>
-                                    <input type="file" name="logo" id="logo"
-                                        class="form-control @error('logo') is-invalid @enderror" accept="image/*">
-                                    @error('logo')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <img src="{{ asset('storage/uploads/logo/default-logo.png') }}"
+                                                alt=""class="img-thumbnail img-preview-logo">
                                         </div>
-                                    @enderror
+                                        <div class="col-sm-8">
+                                            <label class="form-label" for="logo">Logo</label>
+                                            <input type="file" name="logo" id="logo"
+                                                class="form-control @error('logo') is-invalid @enderror" accept="image/*"
+                                                onchange="previewImgLogo()" value="{{ old('logo') }}">
+                                            @error('logo')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="foto">Foto Toko</label>
-                                    <input type="file" name="foto" id="foto"
-                                        class="form-control @error('foto') is-invalid @enderror" accept="image/*">
-                                    @error('foto')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <img src="{{ asset('storage/uploads/foto/default-foto.png') }}"
+                                                alt=""class="img-thumbnail img-preview">
                                         </div>
-                                    @enderror
+                                        <div class="col-sm-8">
+                                            <label class="form-label" for="foto">Foto Toko</label>
+                                            <input type="file" name="foto" id="foto"
+                                                class="form-control @error('foto') is-invalid @enderror" accept="image/*"
+                                                onchange="previewImgFoto()">
+                                            @error('foto')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -163,52 +181,78 @@
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
-<script>
-    var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+    <script>
+        function previewImgLogo() {
+            const logo = document.querySelector('#logo');
+            const imgPreview = document.querySelector('.img-preview-logo');
+            const fileFoto = new FileReader();
 
-    // Layer map Hybrid in google
-    L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
-    }).addTo(map);
+            fileFoto.readAsDataURL(logo.files[0]);
 
-    let marker = {};
-
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        let latitude = e.latlng.lat.toString().substring(0, 15);
-        let longtitude = e.latlng.lng.toString().substring(0, 15);
-        
-        if (marker != undefined) {
-            map.removeLayer(marker)
+            fileFoto.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
         }
 
-        document.querySelector('#latitude').value = latitude;
-        document.querySelector('#longtitude').value = longtitude;
-		popup
-			.setLatLng([latitude, longtitude])
-			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
-			.openOn(map);
-        
-        marker = L.marker([latitude, longtitude]).addTo(map)
-            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
-	}
+        function previewImgFoto() {
+            const foto = document.querySelector('#foto');
+            const imgPreview = document.querySelector('.img-preview');
+            const fileFoto = new FileReader();
 
-	map.on('click', onMapClick);
+            fileFoto.readAsDataURL(foto.files[0]);
 
-    const search = new GeoSearch.GeoSearchControl({
-        provider: new GeoSearch.OpenStreetMapProvider(),
-        style: 'bar',
-        searchLabel: 'Cari...',
-        autoComplete: true,
-        autoCompleteDelay: 250,
-        showMarker: true,
-        showPopup: true,
-        retainZoomLevel: true,
-    });
-    map.addControl(search);
-</script>
+            fileFoto.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+
+
+        var map = L.map('map').setView([-7.006250797982, 108.48793029785], 11);
+
+        // Layer map Hybrid in google
+        L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }).addTo(map);
+
+        let marker = {};
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            let latitude = e.latlng.lat.toString().substring(0, 15);
+            let longtitude = e.latlng.lng.toString().substring(0, 15);
+
+            if (marker != undefined) {
+                map.removeLayer(marker)
+            }
+
+            document.querySelector('#latitude').value = latitude;
+            document.querySelector('#longtitude').value = longtitude;
+            popup
+                .setLatLng([latitude, longtitude])
+                .setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+                .openOn(map);
+
+            marker = L.marker([latitude, longtitude]).addTo(map)
+                .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
+        }
+
+        map.on('click', onMapClick);
+
+        const search = new GeoSearch.GeoSearchControl({
+            provider: new GeoSearch.OpenStreetMapProvider(),
+            style: 'bar',
+            searchLabel: 'Cari...',
+            autoComplete: true,
+            autoCompleteDelay: 250,
+            showMarker: true,
+            showPopup: true,
+            retainZoomLevel: true,
+        });
+        map.addControl(search);
+    </script>
 @endpush

@@ -3,7 +3,8 @@
 @section('title', 'Toko')
 
 @section('styles')
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+        integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="" />
 @endsection
 
 @section('content')
@@ -42,7 +43,7 @@
                             <tr>
                                 <th style="width: 30%;">Deskripsi</th>
                                 <td>:</td>
-                                <td>{{ $toko->deskripsi}}</th>
+                                <td>{{ $toko->deskripsi }}</th>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Alamat</th>
@@ -52,20 +53,32 @@
                             <tr>
                                 <th style="width: 30%;">Logo</th>
                                 <td>:</td>
-                                <td><a href="{{ asset('storage/' . $toko->logo) }}" target="_blank">Logo -
-                                        {{ $toko->nama }}</a></th>
+                                <td>
+                                    @if ($toko->logo)
+                                        <a href="{{ asset('storage/' . $toko->logo) }}" target="_blank">Logo -
+                                            {{ $toko->nama }}</a>
+                                    @else
+                                        <p>-</p>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Foto Toko</th>
                                 <td>:</td>
-                                <td><a href="{{ asset('storage/' . $toko->foto) }}" target="_blank">Foto Toko -
-                                        {{ $toko->nama }}</a></th>
+                                <td>
+                                    @if ($toko->foto)
+                                        <a href="{{ asset('storage/' . $toko->foto) }}" target="_blank">Foto -
+                                            {{ $toko->nama }}</a>
+                                    @else
+                                        <p>-</p>
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Dokumen</th>
                                 <td>:</td>
                                 <td><a href="{{ asset('storage/' . $toko->dokumen) }}" target="_blank">Dokumen -
-                                        {{ $toko->nama }}</a></th>
+                                        {{ $toko->nama }}</a></td>
                             </tr>
                             <tr>
                                 <th style="width: 30%;">Status</th>
@@ -81,7 +94,9 @@
                             <tr>
                                 <th style="width: 30%;">Map</th>
                                 <td>:</td>
-                                <td><div id="map" style="width: 100%; height: 300px;"></div></th>
+                                <td>
+                                    <div id="map" style="width: 100%; height: 300px;"></div>
+                                </td>
                             </tr>
                         </table>
 
@@ -104,19 +119,19 @@
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script>
-    var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
 
-    // Layer map Hybrid in google
-    L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
-    }).addTo(map);
+        // Layer map Hybrid in google
+        L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }).addTo(map);
 
-    var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+        var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
 
-    marker.bindPopup(<?= json_encode($toko->nama ) ?>).openPopup();
-
-</script>
+        marker.bindPopup(<?= json_encode($toko->nama) ?>).openPopup();
+    </script>
 @endpush

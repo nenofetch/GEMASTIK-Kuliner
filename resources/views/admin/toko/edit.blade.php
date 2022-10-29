@@ -81,28 +81,56 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="logo">Logo</label>
-                                    <input type="file" name="logo" id="logo"
-                                        class="form-control @error('logo') is-invalid @enderror" value="{{ $toko->logo }}"
-                                        accept="image/*">
-                                    @error('logo')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            @if ($toko->logo)
+                                                <img src="{{ asset('storage/' . $toko->logo) }}"
+                                                    alt="Logo - {{ $toko->name }}"
+                                                    class="img-thumbnail img-preview-logo">
+                                            @else
+                                                <img src="{{ asset('storage/uploads/logo/default-logo.png') }}"
+                                                    alt=""class="img-thumbnail img-preview-logo">
+                                            @endif
                                         </div>
-                                    @enderror
+                                        <div class="col-sm-8">
+                                            <label class="form-label" for="logo">Logo</label>
+                                            <input type="file" name="logo" id="logo"
+                                                class="form-control @error('logo') is-invalid @enderror"
+                                                value="{{ $toko->logo }}" accept="image/*" onchange="previewImgLogo()">
+                                            @error('logo')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="foto">Foto Toko</label>
-                                    <input type="file" name="foto" id="foto"
-                                        class="form-control @error('foto') is-invalid @enderror"
-                                        value="{{ $toko->foto }}" accept="image/*">
-                                    @error('foto')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            @if ($toko->foto)
+                                                <img src="{{ asset('storage/' . $toko->foto) }}"
+                                                    alt="Foto - {{ $toko->nama }}" class="img-thumbnail img-preview">
+                                            @else
+                                                <img src="{{ asset('storage/uploads/foto/default-foto.png') }}"
+                                                    alt=""class="img-thumbnail img-preview">
+                                            @endif
                                         </div>
-                                    @enderror
+                                        <div class="col-sm-8">
+                                            <label class="form-label" for="foto">Foto Toko</label>
+                                            <input type="file" name="foto" id="foto"
+                                                class="form-control @error('foto') is-invalid @enderror"
+                                                value="{{ $toko->foto }}" accept="image/*"
+                                                onchange="previewImgFoto()">
+                                            @error('foto')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -116,6 +144,10 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                    <p><a href="{{ asset('storage/' . $toko->dokumen) }}"
+                                            class="badge bg-secondary text-light mt-2" target="_blank">Dokumen
+                                            Penunjang -
+                                            {{ $toko->nama }}</a></p>
                                 </div>
                             </div>
                             @if (Auth::user()->hasRole('Administrator'))
@@ -185,55 +217,80 @@
 @endsection
 
 @push('scripts')
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
-{{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
-<script>
-    var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+        integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-geosearch@3.1.0/dist/geosearch.umd.js"></script>
+    {{-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> --}}
+    <script>
+        function previewImgLogo() {
+            const logo = document.querySelector('#logo');
+            const imgPreview = document.querySelector('.img-preview-logo');
+            const fileFoto = new FileReader();
 
-    // Layer map Hybrid in google
-    L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}',{
-        maxZoom: 20,
-        subdomains:['mt0','mt1','mt2','mt3']
-    }).addTo(map);
-    
-    var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+            fileFoto.readAsDataURL(logo.files[0]);
 
-    marker.bindPopup(<?= json_encode($toko->nama ) ?>).openPopup();
-
-    var popup = L.popup();
-
-    function onMapClick(e) {
-        let latitude = e.latlng.lat.toString().substring(0, 15);
-        let longtitude = e.latlng.lng.toString().substring(0, 15);
-        
-        if (marker != undefined) {
-            map.removeLayer(marker)
+            fileFoto.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
         }
-        
-        document.querySelector('#latitude').value = latitude;
-        document.querySelector('#longtitude').value = longtitude;
-		popup
-			.setLatLng([latitude, longtitude])
-			.setContent('Kordinat : ' + latitude + ' - ' + longtitude)
-			.openOn(map);
-        
-        marker = L.marker([latitude, longtitude]).addTo(map)
-            .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
-	}
 
-	map.on('click', onMapClick);
+        function previewImgFoto() {
+            const foto = document.querySelector('#foto');
+            const imgPreview = document.querySelector('.img-preview');
+            const fileFoto = new FileReader();
 
-    const search = new GeoSearch.GeoSearchControl({
-        provider: new GeoSearch.OpenStreetMapProvider(),
-        style: 'bar',
-        searchLabel: 'Cari...',
-        autoComplete: true,
-        autoCompleteDelay: 250,
-        showMarker: true,
-        showPopup: true,
-        retainZoomLevel: true,
-    });
-    map.addControl(search);
-</script>
+            fileFoto.readAsDataURL(foto.files[0]);
+
+            fileFoto.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+
+        var map = L.map('map').setView([{{ $toko->latitude }}, {{ $toko->longtitude }}], 15);
+
+        // Layer map Hybrid in google
+        L.tileLayer('http://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 20,
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+        }).addTo(map);
+
+        var marker = L.marker([{{ $toko->latitude }}, {{ $toko->longtitude }}]).addTo(map);
+
+        marker.bindPopup(<?= json_encode($toko->nama) ?>).openPopup();
+
+        var popup = L.popup();
+
+        function onMapClick(e) {
+            let latitude = e.latlng.lat.toString().substring(0, 15);
+            let longtitude = e.latlng.lng.toString().substring(0, 15);
+
+            if (marker != undefined) {
+                map.removeLayer(marker)
+            }
+
+            document.querySelector('#latitude').value = latitude;
+            document.querySelector('#longtitude').value = longtitude;
+            popup
+                .setLatLng([latitude, longtitude])
+                .setContent('Kordinat : ' + latitude + ' - ' + longtitude)
+                .openOn(map);
+
+            marker = L.marker([latitude, longtitude]).addTo(map)
+                .bindPopup('Kordinat : ' + latitude + ' - ' + longtitude).openPopup();
+        }
+
+        map.on('click', onMapClick);
+
+        const search = new GeoSearch.GeoSearchControl({
+            provider: new GeoSearch.OpenStreetMapProvider(),
+            style: 'bar',
+            searchLabel: 'Cari...',
+            autoComplete: true,
+            autoCompleteDelay: 250,
+            showMarker: true,
+            showPopup: true,
+            retainZoomLevel: true,
+        });
+        map.addControl(search);
+    </script>
 @endpush
