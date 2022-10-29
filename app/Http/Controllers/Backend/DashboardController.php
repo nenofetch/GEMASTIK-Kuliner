@@ -27,15 +27,9 @@ class DashboardController extends Controller
             ];
         } else {
             $iduser = Auth::user()->id;
-            $toko = Toko::where('user_id', $iduser)->get();
-
-            foreach($toko as $row) {
-                $idtoko = $row->id;
-            }
-
             $data = [
-                'toko' => $toko->count(),
-                'product' => Product::where('toko_id', $idtoko)->count(),
+                'toko' => Toko::where('user_id', $iduser)->count(),
+                'product' => Product::join('toko', 'toko.id', '=', 'products.toko_id')->where('user_id', $iduser)->count(),
             ];
         }
 

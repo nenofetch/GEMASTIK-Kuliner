@@ -32,14 +32,8 @@ class ProductController extends Controller
                 'products' => Product::all(),
             ];
         } else {
-            $toko = Toko::where('user_id', Auth::user()->id)->get();
-
-            foreach($toko as $row) {
-                $idtoko = $row->id;
-            }
-
             $data = [
-                'products' => Product::where('toko_id', $idtoko)->get(),
+                'products' => Product::join('toko', 'toko.id', '=', 'products.toko_id')->where('user_id', Auth::user()->id)->get(),
             ];
         }
         return view('admin.product.index', $data);
