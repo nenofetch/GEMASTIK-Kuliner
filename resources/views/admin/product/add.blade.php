@@ -29,14 +29,22 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="image">Foto Produk</label>
-                                    <input type="file" name="image" id="image"
-                                        class="form-control @error('image') is-invalid @enderror" accept="image/*">
-                                    @error('image')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <img src="{{ asset('storage/uploads/products/default-product.png') }}"
+                                                alt=""class="img-thumbnail img-preview">
                                         </div>
-                                    @enderror
+                                        <div class="col-sm-8">
+                                            <label class="form-label" for="image">Foto Produk</label>
+                                            <input type="file" name="image" id="image"
+                                                class="form-control @error('image') is-invalid @enderror" accept="image/*" onchange="previewImg()">
+                                            @error('image')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -164,6 +172,18 @@
     <script src="{{ asset('vendor') }}/sweetalert/sweetalert.all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
+        function previewImg() {
+            const logo = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+            const fileFoto = new FileReader();
+
+            fileFoto.readAsDataURL(logo.files[0]);
+
+            fileFoto.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+
         $("#saveCateg").click(function(e) {
             e.preventDefault();
             let token = $("meta[name='csrf-token']").attr("content");

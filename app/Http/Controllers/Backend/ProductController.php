@@ -153,11 +153,11 @@ class ProductController extends Controller
 
         $product = Product::find($id);
 
-        if ($request->hasFile('image') != '') {
+        if ($request->hasFile('image')) {
             Storage::delete($product->image);
             $path = $request->file('image')->store('uploads/products');
         } else {
-            $path = '';
+            $path = $product->image;
         }
 
         $product->update([
