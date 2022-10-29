@@ -196,8 +196,8 @@
                                         </small>
                                     @enderror
                                     <div id="map" style="width: 100%; height: 300px;"></div>
-                                    <input type="text" class="form-control" name="latitude" id="latitude" hidden>
-                                    <input type="text" class="form-control" name="longtitude" id="longtitude" hidden>
+                                    <input type="text" class="form-control" name="latitude" id="latitude" value="{{ $toko->latitude }}" hidden>
+                                    <input type="text" class="form-control" name="longtitude" id="longtitude" value="{{ $toko->longtitude }}" hidden>
                                 </div>
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
