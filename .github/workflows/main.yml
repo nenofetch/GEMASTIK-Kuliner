@@ -15,4 +15,3 @@ jobs:
         server: ftp.justnear.my.id
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /home/justnear/sikuku.justnear.my.id/
