@@ -1,0 +1,23 @@
+name: Deploy website
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  web-deploy:
+    name: Auto deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v2
+    
+    - name: Sunc files
+      uses: burnett01/rsync-deployments@5.2.1
+      with:
+        switches: -avzr --delete --exclude=".git" --exclude=".github"
+        path: src/
+        remote_path: /home/justnear/sikuku.justnear.my.id/
+        remote_host: sikuku.justnear.my.id
+        remote_user: justnear
+        remote_key: ${{ secrets.DEPLOY_KEY }}
