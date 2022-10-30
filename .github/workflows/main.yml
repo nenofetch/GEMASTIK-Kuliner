@@ -1,15 +1,15 @@
-name: Deploy website
+name: 🚀 Deploy website on push
 on: push
 
 jobs:
   web-deploy:
-    name: Auto deploy
+    name: 🎉 Auto deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Get latest code
+    - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
-    - name: Sunc files
+    - name: 📂 Sync files
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete --exclude=".git" --exclude=".github"
