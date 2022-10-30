@@ -35,10 +35,10 @@
                                 <th>Nama Toko</th>
                                 <th>Pemilik</th>
                                 <th>Alamat</th>
-                                <th>Status</th>
                                 @if (Auth::user()->hasRole('Administrator'))
                                     <th>User</th>
                                 @endif
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -50,15 +50,15 @@
                                     <td>{{ $row->nama }}</td>
                                     <td>{{ $row->pemilik }}</td>
                                     <td>{{ $row->alamat }}</td>
+                                    @if (Auth::user()->hasRole('Administrator'))
+                                        <td>{{ $row->user->name }}</td>
+                                    @endif
                                     @if ($row->status == 'pending')
                                         <td><span class="badge bg-secondary">Pending</span></td>
                                     @elseif($row->status == 'diterima')
                                         <td><span class="badge bg-success">Diterima</span></td>
                                     @elseif($row->status == 'ditolak')
                                         <td><span class="badge bg-danger">Ditolak</span></td>
-                                    @endif
-                                    @if (Auth::user()->hasRole('Administrator'))
-                                        <td>{{ $row->user->name }}</td>
                                     @endif
                                     <td>
                                         <div class="btn-group" role="group">
