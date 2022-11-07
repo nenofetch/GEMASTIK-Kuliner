@@ -18,7 +18,7 @@ Tools/Bahasa pemrograman yang dipakai :
 
 Orang-orang yang ikut berkontribusi dalam pembuatan sistem ini.
 
-<a href="https://github.com/AliAbdurohman16/sipedes/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AliAbdurohman16/sipedes" />
+<a href="https://github.com/nenofetch/GEMASTIK-Kuliner/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=nenofetch/GEMASTIK-Kuliner" />
 </a>
 
