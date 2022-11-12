@@ -165,11 +165,11 @@
     </div>
 
     <!-- toko section -->
-    <div class="section-sm border-top" id="toko">
+    <div class="section-sm border-top">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-                    <h3 class="font-family-secondary">Toko</h3>
+                    <h3 class="font-family-secondary">Produk</h3>
                     <div class="divider-zigzag divider-zigzag-color-black-07">
                         <span></span><span></span><span></span>
                     </div>
@@ -178,25 +178,25 @@
             <!-- toko -->
             <div class="row g-3 margin-top-50">
                 <!-- Product box -->
-                @foreach ($toko as $row)
+                @foreach ($produk as $row)
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="product-box">
                             <div class="product-img">
                                 <!-- Product IMG -->
                                 <a class="product-img-link" href="#">
-                                    <img src="{{ asset('storage/' . $row->foto) }}" alt="{{ $row->nama }}" width="100"
+                                    <img src="{{ asset('storage/' . $row->image) }}" alt="{{ $row->name }}" width="100"
                                         height="100">
                                 </a>
                                 <div class="add-to-cart">
-                                    <a href="{{ route('list-produk') }}">Detail</a>
+                                    <a href="{{ url('/info-produk/' . $row->id) }}">Detail</a>
                                 </div>
                             </div>
                             <div class="product-title">
                                 <!-- Product Title -->
-                                <h6 class="fw-medium"><a href="#">{{ $row->nama }}</a></h6>
+                                <h6 class="fw-medium"><a href="#">{{ $row->name }} - {{ $row->toko->nama }}</a></h6>
                                 <!-- Product Price -->
                                 <div class="price">
-                                    {{ $row->alamat }}
+                                    {{ $row->price }}
                                 </div>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
             </div><!-- end row -->
             <!-- Pagination -->
             <div class="text-center margin-top-50">
-                <a class="button button-dark button-lg button-rounded" href="{{ route('list-shop') }}">All Shop</a>
+                <a class="button button-dark button-lg button-rounded" href="{{ route('list-produk') }}">All Shop</a>
             </div>
         </div><!-- end container -->
     </div>

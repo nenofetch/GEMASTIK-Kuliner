@@ -20,9 +20,9 @@ Route::get('/list-produk', [App\Http\Controllers\ProductController::class, 'inde
 Route::get('/info-produk/{id}', [App\Http\Controllers\ProductController::class, 'detail'])->name('info-produk');
 
 
-Route::get('/list-shop', function () {
-    return view('frontend.user.listShop');
-})->name('list-shop');
+// Route::get('/list-shop', function () {
+//     return view('frontend.user.listShop');
+// })->name('list-shop');
 
 Route::middleware(['role:Administrator'])->group(function () {
     Route::resources([

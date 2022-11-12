@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Toko;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'toko' => Toko::with('user')->where('status', 'diterima')->orderBy('id', 'desc')->get()
+            'produk' => Product::with('toko')->orderBy('id', 'desc')->limit(6)->get()
         ];
         return view('frontend.user.index', $data);
     }

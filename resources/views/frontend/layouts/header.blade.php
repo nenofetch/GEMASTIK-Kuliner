@@ -20,9 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('/') }}#faq">FAQ</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('/') }}#toko">Toko</a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('list-produk') }}">Produk</a>
                 </li>
