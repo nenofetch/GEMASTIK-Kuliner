@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{ asset('frontend/assets') }}/images/sikuku.png" rel="shortcut icon">
+    <link rel="shortcut icon" href="{{ asset('assets') }}/images/sikuku.png">
     <!-- CSS -->
     <link href="{{ asset('frontend/assets') }}/plugins/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('frontend/assets') }}/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
