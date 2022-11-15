@@ -8,6 +8,12 @@ jobs:
     steps:
     - name: 🚚 Get latest code
       uses: actions/checkout@v2
+
+    - name: Install composer dependencies
+      runs: composer install
+
+    - name: Install npm modules
+      runs: npm install
     
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
